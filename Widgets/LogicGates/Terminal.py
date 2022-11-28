@@ -10,7 +10,7 @@ class Terminal(QWidget):
         self.type = None
         self.connection = None
         self.value = False
-        self.setGeometry(x, y, 10, 10)
+        self.setGeometry(int(x * parent.scaleX), int(y * parent.scaleY), 10, 10)
         self.setType(type)
 
         #self.setMouseTracking(True)
@@ -46,6 +46,7 @@ class Terminal(QWidget):
         self.painter.end()
 
     def mousePressEvent(self, event: QtGui.QMouseEvent) -> None:
+        super(Terminal, self).mousePressEvent(event)
         if event.button() == QtCore.Qt.LeftButton:
             self.parent().onTerminalPress(self)
 

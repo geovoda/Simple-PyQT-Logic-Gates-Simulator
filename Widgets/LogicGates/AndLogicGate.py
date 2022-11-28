@@ -6,7 +6,7 @@ from Widgets.LogicGates.Terminal import Terminal
 class AndLogicGate(LogicGate):
     def __init__(self, x, y, parent):
         super(AndLogicGate, self).__init__(parent)
-        self.setGeometry(x, y, 250, 200)
+        self.setGeometry(x, y, int(250 * self.scaleX), int(200 * self.scaleY))
 
         self.terminals = [
             Terminal("INPUT", 0, 40 - 5, self),

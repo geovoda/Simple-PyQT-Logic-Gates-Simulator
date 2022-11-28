@@ -10,8 +10,8 @@ class LogicGate(QWidget):
         super().__init__()
         self.mousePressPosition = None
 
-        self.scaleX = 1
-        self.scaleY = 1
+        self.scaleX = 0.5
+        self.scaleY = 0.5
 
         self.painter = QPainter(self)
         self.terminals = []
@@ -19,6 +19,7 @@ class LogicGate(QWidget):
         self.setParent(parent)
 
     def mousePressEvent(self, event: QtGui.QMouseEvent) -> None:
+        super(LogicGate, self).mousePressEvent(event)
         if event.button() == QtCore.Qt.LeftButton:
             self.mousePressPosition = event.pos()
 
@@ -26,12 +27,6 @@ class LogicGate(QWidget):
         super().mouseMoveEvent(event)
         if event.buttons() == QtCore.Qt.LeftButton and self.mousePressPosition is not None:
             newPos = self.mapToParent(event.pos() - self.mousePressPosition)
-
-            if newPos.x() < 0:
-                newPos.setX(0)
-
-            if newPos.y() < 0:
-                newPos.setY(0)
             self.move(newPos)
             self.parent().update()
 
