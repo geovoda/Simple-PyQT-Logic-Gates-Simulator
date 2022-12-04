@@ -16,13 +16,14 @@ class LogicGateContainer(QWidget):
         self.__linkingTerminal = None
         self.__mousePos = None
 
+        self.scaleX = 0.5
+        self.scaleY = 0.5
+
         self.setMouseTracking(True)
 
         self.painter = QPainter(self)
 
         self.initWindow()
-
-        self.inputStream = InputStream(10, 40, self)
 
     def initWindow(self):
         self.undoButton = QPushButton(self)
@@ -52,13 +53,29 @@ class LogicGateContainer(QWidget):
 
         self.zoomOutButton = QPushButton(self)
         self.zoomOutButton.setText("Zoom out")  # text
-        self.zoomOutButton.clicked.connect(self.zoomIn)
+        self.zoomOutButton.clicked.connect(self.zoomOut)
         self.zoomOutButton.move(410, 1)
 
         self.show()
 
     def zoomIn(self):
         print("Zoom In")
+
+        self.scaleX = self.scaleX + 0.1
+        self.scaleY = self.scaleY + 0.1
+
+        for gate in self.logicGates:
+            gate.setScale(self.scaleX, self.scaleY)
+
+
+    def zoomOut(self):
+        print("Zoom In")
+
+        self.scaleX = self.scaleX - 0.1
+        self.scaleY = self.scaleY - 0.1
+
+        for gate in self.logicGates:
+            gate.setScale(self.scaleX, self.scaleY)
 
     def toggleSimulation(self):
         print("Incep simularea")
@@ -71,9 +88,9 @@ class LogicGateContainer(QWidget):
 
     def addGate(self, type):
         if type == "AND":
-            self.logicGates.append(AndLogicGate(0, 0, self))
+            self.logicGates.append(AndLogicGate(0, 0, self, (self.scaleX, self.scaleY)))
         elif type == "INPUT_STREAM":
-            self.logicGates.append(InputStream(0, 0, self))
+            self.logicGates.append(InputStream(0, 0, self, (self.scaleX, self.scaleY)))
 
     def mouseMoveEvent(self, e: QtGui.QMouseEvent) -> None:
         if self.__linkingTerminal is not None:

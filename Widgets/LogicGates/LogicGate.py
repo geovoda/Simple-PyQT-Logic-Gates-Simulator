@@ -6,12 +6,15 @@ from PyQt5 import QtCore
 import math
 
 class LogicGate(QWidget):
-    def __init__(self, parent):
+    def __init__(self, x, y, width, height, scale, parent):
         super().__init__()
+        self.__originalWidth = width
+        self.__originalHeight = height
+
         self.__mousePressPosition = None
 
-        self.scaleX = 0.5
-        self.scaleY = 0.5
+        self.scaleX, self.scaleY = scale
+        self.setGeometry(x, y, int(width * self.scaleX), int(height * self.scaleY))
 
         self.painter = QPainter(self)
         self.terminals = []
@@ -23,6 +26,7 @@ class LogicGate(QWidget):
         if event.button() == QtCore.Qt.LeftButton:
             self.__mousePressPosition = event.pos()
 
+
     def mouseMoveEvent(self, event: QtGui.QMouseEvent) -> None:
         super().mouseMoveEvent(event)
         if event.buttons() == QtCore.Qt.LeftButton and self.__mousePressPosition is not None:
@@ -31,6 +35,11 @@ class LogicGate(QWidget):
 
     def setScale(self, x, y):
         self.scaleX, self.scaleY = x, y
+
+        self.setGeometry(self.x(), self.y(), int(self.__originalWidth * self.scaleX), int(self.__originalHeight * self.scaleY))
+
+        for terminal in self.terminals:
+            terminal.setScale(x, y)
 
     def paintGate(self):
         pass

@@ -7,6 +7,9 @@ from PyQt5.QtWidgets import QWidget
 class Terminal(QWidget):
     def __init__(self, type, x, y, parent, multipleLinks=False):
         super(Terminal, self).__init__()
+        self.__originalX = x
+        self.__originalY = y
+
         self.type = None
         self.connection = None
         self.value = False
@@ -45,6 +48,11 @@ class Terminal(QWidget):
         self.painter.drawEllipse(0, 0, 10, 10)
 
         self.painter.end()
+
+    def setScale(self, x, y):
+        self.scaleX, self.scaleY = x, y
+
+        self.setGeometry(int(self.__originalX * self.scaleX), int(self.__originalY * self.scaleY), 10, 10)
 
     def mousePressEvent(self, event: QtGui.QMouseEvent) -> None:
         super(Terminal, self).mousePressEvent(event)

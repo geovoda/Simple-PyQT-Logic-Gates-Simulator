@@ -6,11 +6,11 @@ from PyQt5.QtWidgets import QLineEdit
 from Widgets.LogicGates.LogicGate import LogicGate
 from Widgets.LogicGates.Terminal import Terminal
 
-
 class InputStream(LogicGate):
-    def __init__(self, x, y, parent):
-        super(InputStream, self).__init__(parent)
-        self.setGeometry(x, y, int(300 * self.scaleX), int(60 * self.scaleY))
+    def __init__(self, x, y, parent, scale):
+        WIDTH = 300
+        HEIGHT = 60
+        super(InputStream, self).__init__(x, y, WIDTH, HEIGHT, scale, parent)
 
         self.terminals = [
             Terminal("OUTPUT", 280, 20, self),
