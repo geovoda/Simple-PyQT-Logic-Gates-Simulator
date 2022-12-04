@@ -28,7 +28,7 @@ class LogicGate(QWidget):
         if event.buttons() == QtCore.Qt.LeftButton and self.mousePressPosition is not None:
             newPos = self.mapToParent(event.pos() - self.mousePressPosition)
             self.move(newPos)
-            self.parent().update()
+            self.parent().repaint()
 
     def setScale(self, x, y):
         self.scaleX, self.scaleY = x, y

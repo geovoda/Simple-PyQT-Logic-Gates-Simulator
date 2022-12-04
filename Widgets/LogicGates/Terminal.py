@@ -14,7 +14,7 @@ class Terminal(QWidget):
         self.setType(type)
         self.multipleLinks = multipleLinks
 
-        # self.setMouseTracking(True)
+        self.setMouseTracking(True)
 
         self.setParent(parent)
         self.painter = QPainter(self)
@@ -51,14 +51,17 @@ class Terminal(QWidget):
         if event.button() == QtCore.Qt.LeftButton:
             self.parent().onTerminalPress(self)
 
+    def mouseMoveEvent(self, event: QtGui.QMouseEvent) -> None:
+        super(Terminal, self).mouseMoveEvent(event)
+
     def eventFilter(self, object, event):
         if event.type() == QEvent.Enter:
             self.pen = QtCore.Qt.green
-            self.update()
+            self.repaint()
             return True
         elif event.type() == QEvent.Leave:
             self.pen = QtCore.Qt.red
-            self.update()
+            self.repaint()
         return False
 
     def relativePos(self):
