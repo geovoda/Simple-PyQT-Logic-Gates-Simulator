@@ -1,10 +1,11 @@
-from PyQt5.QtCore import QEvent
-from PyQt5.QtGui import QPainter, QPen
-from PyQt5.QtWidgets import QWidget, QLayout, QPushButton
+from PyQt5.QtCore import QEvent, QRegularExpression
+from PyQt5.QtGui import QPainter, QPen, QIntValidator, QFont, QRegularExpressionValidator
+from PyQt5.QtWidgets import QWidget, QLayout, QPushButton, QLineEdit
 from PyQt5 import QtGui
 from PyQt5 import QtCore
 
 from Widgets.LogicGates.AndLogicGate import AndLogicGate
+from Widgets.LogicGates.InputStream import InputStream
 
 
 class LogicGateContainer(QWidget):
@@ -21,6 +22,8 @@ class LogicGateContainer(QWidget):
 
         self.initWindow()
 
+        self.inputStream = InputStream(10, 40, self)
+
     def initWindow(self):
         self.undoButton = QPushButton(self)
         self.undoButton.setText("Undo")  # text
@@ -34,9 +37,18 @@ class LogicGateContainer(QWidget):
         self.redoButton.setShortcut('Ctrl+Z')  # shortcut key
         self.redoButton.clicked.connect(self.redo)
         self.redoButton.setToolTip("Reface ultima actiune")  # Tool tip
-        self.redoButton.move(100, 1)
+        self.redoButton.move(110, 1)
+
+        self.simulateButton = QPushButton(self)
+        self.simulateButton.setText("Simulare")  # text
+        self.simulateButton.clicked.connect(self.toggleSimulation)
+        self.simulateButton.setToolTip("Simuleaza circuitul")  # Tool tip
+        self.simulateButton.move(210, 1)
 
         self.show()
+
+    def toggleSimulation(self):
+        print("Incep simularea")
 
     def undo(self):
         print("Undo")
@@ -44,17 +56,28 @@ class LogicGateContainer(QWidget):
     def redo(self):
         print("Redo")
 
-    def addGate(self):
-        self.logicGates.append(AndLogicGate(0, 0, self))
+    def addGate(self, type):
+        if type == "AND":
+            self.logicGates.append(AndLogicGate(0, 0, self))
+        elif type == "INPUT_STREAM":
+            self.logicGates.append(InputStream(0, 0, self))
 
     def mouseMoveEvent(self, e: QtGui.QMouseEvent) -> None:
         if self.__linkingTerminal is not None:
             self.__mousePos = e.pos()
             self.update()
 
+    def mousePressEvent(self, e: QtGui.QMouseEvent) -> None:
+        print("da")
+        if e.button() == QtCore.Qt.LeftButton and self.__linkingTerminal is not None:
+            self.__linkingTerminal = None
+            self.update()
+
     def onTerminalPress(self, terminal):
         if terminal.getConnectedTerminal() is not None:
-            print("Terminal deja conectat")
+            # print("Terminal deja conectat")
+            terminal.getConnectedTerminal().disconnectTerminal()
+            terminal.disconnectTerminal()
         elif self.__linkingTerminal is None:
             self.__linkingTerminal = terminal
         else:
@@ -69,6 +92,8 @@ class LogicGateContainer(QWidget):
                 terminal.connectTerminal(self.__linkingTerminal)
                 self.__linkingTerminal = None
 
+        self.update()
+
     def paintEvent(self, a0: QtGui.QPaintEvent) -> None:
         self.painter.begin(self)
         self.painter.setRenderHint(QPainter.Antialiasing)
@@ -77,7 +102,7 @@ class LogicGateContainer(QWidget):
         pen.setWidth(5)
         self.painter.setPen(pen)
 
-        if self.__linkingTerminal and self.__mousePos:
+        if self.__linkingTerminal is not None and self.__mousePos:
             self.painter.drawLine(self.__linkingTerminal.relativePos().x(), self.__linkingTerminal.relativePos().y(), self.__mousePos.x(), self.__mousePos.y())
 
         for gate in self.logicGates:

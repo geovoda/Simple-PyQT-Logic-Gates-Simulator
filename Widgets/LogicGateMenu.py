@@ -7,13 +7,19 @@ class LogicGateMenu(QWidget):
 
         vbox = QVBoxLayout()
 
-        for i in range(5):
-            button = QPushButton("AND")
-            button.clicked.connect(self.createLogicGate)
-            vbox.addWidget(button)
+        button = QPushButton("INPUT")
+        button.clicked.connect(lambda: self.createLogicGate("INPUT_STREAM"))
+        vbox.addWidget(button)
+
+        button = QPushButton("AND")
+        button.clicked.connect(lambda: self.createLogicGate("AND"))
+        vbox.addWidget(button)
+
+
+
 
         self.setLayout(vbox)
         self.parentWindow = parentWindow
 
-    def createLogicGate(self):
-        self.parentWindow.logicGateContainer.addGate()
+    def createLogicGate(self, type):
+        self.parentWindow.logicGateContainer.addGate(type)

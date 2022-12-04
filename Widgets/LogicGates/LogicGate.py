@@ -19,7 +19,7 @@ class LogicGate(QWidget):
         self.setParent(parent)
 
     def mousePressEvent(self, event: QtGui.QMouseEvent) -> None:
-        super(LogicGate, self).mousePressEvent(event)
+        #super(LogicGate, self).mousePressEvent(event)
         if event.button() == QtCore.Qt.LeftButton:
             self.mousePressPosition = event.pos()
 

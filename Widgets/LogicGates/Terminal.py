@@ -5,22 +5,23 @@ from PyQt5.QtWidgets import QWidget
 
 
 class Terminal(QWidget):
-    def __init__(self, type, x, y, parent):
+    def __init__(self, type, x, y, parent, multipleLinks=False):
         super(Terminal, self).__init__()
         self.type = None
         self.connection = None
         self.value = False
         self.setGeometry(int(x * parent.scaleX), int(y * parent.scaleY), 10, 10)
         self.setType(type)
+        self.multipleLinks = multipleLinks
 
-        #self.setMouseTracking(True)
+        # self.setMouseTracking(True)
 
         self.setParent(parent)
         self.painter = QPainter(self)
         self.installEventFilter(self)
         self.pen = QtCore.Qt.red
 
-        self.connectedTerminal: Terminal = None
+        self.connectedTerminal = None
 
     def setType(self, type):
         if type != "INPUT" and type != "OUTPUT":
@@ -65,6 +66,9 @@ class Terminal(QWidget):
 
     def connectTerminal(self, terminal):
         self.connectedTerminal = terminal
+
+    def disconnectTerminal(self):
+        self.connectedTerminal = None
 
     def getConnectedTerminal(self):
         return self.connectedTerminal
