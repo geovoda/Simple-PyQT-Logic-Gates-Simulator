@@ -45,7 +45,20 @@ class LogicGateContainer(QWidget):
         self.simulateButton.setToolTip("Simuleaza circuitul")  # Tool tip
         self.simulateButton.move(210, 1)
 
+        self.zoomInButton = QPushButton(self)
+        self.zoomInButton.setText("Zoom in")
+        self.zoomInButton.clicked.connect(self.zoomIn)
+        self.zoomInButton.move(310, 1)
+
+        self.zoomOutButton = QPushButton(self)
+        self.zoomOutButton.setText("Zoom out")  # text
+        self.zoomOutButton.clicked.connect(self.zoomIn)
+        self.zoomOutButton.move(410, 1)
+
         self.show()
+
+    def zoomIn(self):
+        print("Zoom In")
 
     def toggleSimulation(self):
         print("Incep simularea")

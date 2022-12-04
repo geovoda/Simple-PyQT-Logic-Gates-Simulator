@@ -8,7 +8,7 @@ import math
 class LogicGate(QWidget):
     def __init__(self, parent):
         super().__init__()
-        self.mousePressPosition = None
+        self.__mousePressPosition = None
 
         self.scaleX = 0.5
         self.scaleY = 0.5
@@ -21,13 +21,12 @@ class LogicGate(QWidget):
     def mousePressEvent(self, event: QtGui.QMouseEvent) -> None:
         #super(LogicGate, self).mousePressEvent(event)
         if event.button() == QtCore.Qt.LeftButton:
-            self.mousePressPosition = event.pos()
+            self.__mousePressPosition = event.pos()
 
     def mouseMoveEvent(self, event: QtGui.QMouseEvent) -> None:
         super().mouseMoveEvent(event)
-        if event.buttons() == QtCore.Qt.LeftButton and self.mousePressPosition is not None:
-            newPos = self.mapToParent(event.pos() - self.mousePressPosition)
-            self.move(newPos)
+        if event.buttons() == QtCore.Qt.LeftButton and self.__mousePressPosition is not None:
+            self.move(self.mapToParent(event.pos() - self.__mousePressPosition))
             self.parent().repaint()
 
     def setScale(self, x, y):
