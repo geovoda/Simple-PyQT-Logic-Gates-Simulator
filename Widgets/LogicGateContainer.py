@@ -68,7 +68,6 @@ class LogicGateContainer(QWidget):
             self.update()
 
     def mousePressEvent(self, e: QtGui.QMouseEvent) -> None:
-        print("da")
         if e.button() == QtCore.Qt.LeftButton and self.__linkingTerminal is not None:
             self.__linkingTerminal = None
             self.update()
@@ -79,6 +78,7 @@ class LogicGateContainer(QWidget):
             terminal.getConnectedTerminal().disconnectTerminal()
             terminal.disconnectTerminal()
         elif self.__linkingTerminal is None:
+            print("Conectez terminalul nou")
             self.__linkingTerminal = terminal
         else:
             if self.__linkingTerminal.parent() is terminal.parent():
@@ -91,6 +91,7 @@ class LogicGateContainer(QWidget):
                 self.__linkingTerminal.connectTerminal(terminal)
                 terminal.connectTerminal(self.__linkingTerminal)
                 self.__linkingTerminal = None
+                self.__mousePos = None
 
         self.update()
 
@@ -102,7 +103,7 @@ class LogicGateContainer(QWidget):
         pen.setWidth(5)
         self.painter.setPen(pen)
 
-        if self.__linkingTerminal is not None and self.__mousePos:
+        if self.__linkingTerminal is not None and self.__mousePos is not None:
             self.painter.drawLine(self.__linkingTerminal.relativePos().x(), self.__linkingTerminal.relativePos().y(), self.__mousePos.x(), self.__mousePos.y())
 
         for gate in self.logicGates:
