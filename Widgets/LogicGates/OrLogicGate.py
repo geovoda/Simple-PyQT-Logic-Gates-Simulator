@@ -3,11 +3,11 @@ from Widgets.LogicGates.LogicGateFactoryOld import LogicGateFactoryOld
 from Widgets.LogicGates.Terminal import Terminal
 
 
-class AndLogicGate(LogicGate):
+class OrLogicGate(LogicGate):
     def __init__(self, x, y, parent, scale):
         WIDTH = 250
         HEIGHT = 200
-        super(AndLogicGate, self).__init__(x, y, WIDTH, HEIGHT, scale, parent)
+        super(OrLogicGate, self).__init__(x, y, WIDTH, HEIGHT, scale, parent)
 
         self.terminals = [
             Terminal("INPUT", 0, 40 - 5, self),

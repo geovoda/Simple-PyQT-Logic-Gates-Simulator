@@ -15,6 +15,9 @@ class LogicGateMenu(QWidget):
         button.clicked.connect(lambda: self.createLogicGate("AND"))
         vbox.addWidget(button)
 
+        button = QPushButton("OR")
+        button.clicked.connect(lambda: self.createLogicGate("OR"))
+        vbox.addWidget(button)
 
 
 

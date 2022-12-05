@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import QApplication
 from Widgets.SimulatorWindow import MainWindow
 
-app = QApplication([])
-simulator = MainWindow()
-app.exec_()
+if __name__=='__main__':
+    app = QApplication([])
+    simulator = MainWindow()
+    app.exec_()
