@@ -13,6 +13,10 @@ class LogicGateMenu(QWidget):
         button.clicked.connect(lambda: self.createLogicGate("INPUT_STREAM"))
         vbox.addWidget(button)
 
+        button = QPushButton("OUTPUT")
+        button.clicked.connect(lambda: self.createLogicGate("OUTPUT_STREAM"))
+        vbox.addWidget(button)
+
         button = QPushButton("AND")
         button.clicked.connect(lambda: self.createLogicGate("AND"))
         button.setIcon(QtGui.QIcon('and.png'))

@@ -27,9 +27,7 @@ class Terminal(QWidget):
         self.connectedTerminal = None
 
     def setType(self, type):
-        if type != "INPUT" and type != "OUTPUT":
-            self.type = "INPUT"
-        else:
+        if type == "INPUT" or type == "OUTPUT":
             self.type = type
 
     def getType(self):
