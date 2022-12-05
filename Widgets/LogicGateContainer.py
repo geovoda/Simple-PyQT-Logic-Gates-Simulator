@@ -6,6 +6,8 @@ from PyQt5 import QtCore
 
 from Widgets.LogicGates.AndLogicGate import AndLogicGate
 from Widgets.LogicGates.InputStream import InputStream
+from Widgets.LogicGates.NandLogicGate import NandLogicGate
+from Widgets.LogicGates.NorLogicGate import NorLogicGate
 from Widgets.LogicGates.OrLogicGate import OrLogicGate
 from Widgets.LogicGates.XorLogicGate import XorLogicGate
 
@@ -99,6 +101,10 @@ class LogicGateContainer(QWidget):
             self.logicGates.append(OrLogicGate(0, 0, self, (self.scaleX, self.scaleY)))
         if type == "XOR":
             self.logicGates.append(XorLogicGate(0, 0, self, (self.scaleX, self.scaleY)))
+        if type == "NAND":
+            self.logicGates.append(NandLogicGate(0, 0, self, (self.scaleX, self.scaleY)))
+        if type == "NOR":
+            self.logicGates.append(NorLogicGate(0, 0, self, (self.scaleX, self.scaleY)))
         elif type == "INPUT_STREAM":
             self.logicGates.append(InputStream(0, 0, self, (self.scaleX, self.scaleY)))
 

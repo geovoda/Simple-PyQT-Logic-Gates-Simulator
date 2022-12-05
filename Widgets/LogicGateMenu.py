@@ -23,6 +23,14 @@ class LogicGateMenu(QWidget):
         button.clicked.connect(lambda: self.createLogicGate("XOR"))
         vbox.addWidget(button)
 
+        button = QPushButton("NAND")
+        button.clicked.connect(lambda: self.createLogicGate("NAND"))
+        vbox.addWidget(button)
+
+        button = QPushButton("NOR")
+        button.clicked.connect(lambda: self.createLogicGate("NOR"))
+        vbox.addWidget(button)
+
         self.setLayout(vbox)
         self.parentWindow = parentWindow
 
