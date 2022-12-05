@@ -9,6 +9,7 @@ from Widgets.LogicGates.InputStream import InputStream
 from Widgets.LogicGates.NandLogicGate import NandLogicGate
 from Widgets.LogicGates.NorLogicGate import NorLogicGate
 from Widgets.LogicGates.OrLogicGate import OrLogicGate
+from Widgets.LogicGates.XnorLogicGate import XnorLogicGate
 from Widgets.LogicGates.XorLogicGate import XorLogicGate
 
 
@@ -96,17 +97,19 @@ class LogicGateContainer(QWidget):
 
     def addGate(self, type):
         if type == "AND":
-            self.logicGates.append(AndLogicGate(0, 0, self, (self.scaleX, self.scaleY)))
+            self.logicGates.append(AndLogicGate(0, 30, self, (self.scaleX, self.scaleY)))
         if type == "OR":
-            self.logicGates.append(OrLogicGate(0, 0, self, (self.scaleX, self.scaleY)))
+            self.logicGates.append(OrLogicGate(0, 30, self, (self.scaleX, self.scaleY)))
         if type == "XOR":
-            self.logicGates.append(XorLogicGate(0, 0, self, (self.scaleX, self.scaleY)))
+            self.logicGates.append(XorLogicGate(0, 30, self, (self.scaleX, self.scaleY)))
         if type == "NAND":
-            self.logicGates.append(NandLogicGate(0, 0, self, (self.scaleX, self.scaleY)))
+            self.logicGates.append(NandLogicGate(0, 30, self, (self.scaleX, self.scaleY)))
         if type == "NOR":
-            self.logicGates.append(NorLogicGate(0, 0, self, (self.scaleX, self.scaleY)))
+            self.logicGates.append(NorLogicGate(0, 30, self, (self.scaleX, self.scaleY)))
+        if type == "XNOR":
+            self.logicGates.append(XnorLogicGate(0, 30, self, (self.scaleX, self.scaleY)))
         elif type == "INPUT_STREAM":
-            self.logicGates.append(InputStream(0, 0, self, (self.scaleX, self.scaleY)))
+            self.logicGates.append(InputStream(0, 30, self, (self.scaleX, self.scaleY)))
 
     def mouseMoveEvent(self, e: QtGui.QMouseEvent) -> None:
         if self.__linkingTerminal is not None:
