@@ -11,10 +11,11 @@ class InputStream(LogicGate):
         WIDTH = 300
         HEIGHT = 60
         super(InputStream, self).__init__(x, y, WIDTH, HEIGHT, scale, parent)
-
+        self.type = "INPUT"
         self.terminals = [
             Terminal("OUTPUT", 280, 20, self),
         ]
+
         self.setStyleSheet("background-color: yellow;")
 
         self.e1 = QLineEdit()
@@ -33,3 +34,6 @@ class InputStream(LogicGate):
         self.e1.setFont(QFont("Arial", int(24 * self.scaleX)))
     def paintGate(self):
         self.painter.drawLine(0, 30, 300, 30)
+    def getOutput(self):
+        return self.e1.displayText()
+

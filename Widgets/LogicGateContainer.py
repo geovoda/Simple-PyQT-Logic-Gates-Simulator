@@ -1,3 +1,6 @@
+from asyncio import wait
+from time import sleep
+
 from PyQt5.QtCore import QEvent, QRegularExpression
 from PyQt5.QtGui import QPainter, QPen, QIntValidator, QFont, QRegularExpressionValidator
 from PyQt5.QtWidgets import QWidget, QLayout, QPushButton, QLineEdit
@@ -75,7 +78,6 @@ class LogicGateContainer(QWidget):
 
         self.repaint()
 
-
     def zoomOut(self):
         print("Zoom In")
 
@@ -88,7 +90,13 @@ class LogicGateContainer(QWidget):
         self.repaint()
 
     def toggleSimulation(self):
-        print("Incep simularea")
+        for gate in self.logicGates:
+            if gate.type == "INPUT":
+                gate.output = gate.getOutput()
+                print(gate.output)
+
+
+
 
     def undo(self):
         print("Undo")
@@ -157,7 +165,8 @@ class LogicGateContainer(QWidget):
         self.painter.setPen(pen)
 
         if self.__linkingTerminal is not None and self.__mousePos is not None:
-            self.painter.drawLine(self.__linkingTerminal.relativePos().x(), self.__linkingTerminal.relativePos().y(), self.__mousePos.x(), self.__mousePos.y())
+            self.painter.drawLine(self.__linkingTerminal.relativePos().x(), self.__linkingTerminal.relativePos().y(),
+                                  self.__mousePos.x(), self.__mousePos.y())
 
         for gate in self.logicGates:
             gate.paintTerminalLinks(self.painter)

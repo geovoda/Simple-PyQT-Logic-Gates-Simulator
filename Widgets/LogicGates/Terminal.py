@@ -9,7 +9,6 @@ class Terminal(QWidget):
         super(Terminal, self).__init__()
         self.__originalX = x
         self.__originalY = y
-
         self.type = None
         self.connection = None
         self.value = False

@@ -9,7 +9,7 @@ class OrLogicGate(LogicGate):
         WIDTH = 250
         HEIGHT = 200
         super(OrLogicGate, self).__init__(x, y, WIDTH, HEIGHT, scale, parent)
-
+        self.type = "OR"
         self.terminals = [
             Terminal("INPUT", 0, 40 - 5, self),
             Terminal("INPUT", 0, 160 - 5, self),

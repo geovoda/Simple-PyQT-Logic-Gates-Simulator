@@ -9,7 +9,7 @@ class XnorLogicGate(LogicGate):
         WIDTH = 250
         HEIGHT = 200
         super(XnorLogicGate, self).__init__(x, y, WIDTH, HEIGHT, scale, parent)
-
+        self.type = "XNOR"
         self.terminals = [
             Terminal("INPUT", 0, 40 - 5, self),
             Terminal("INPUT", 0, 160 - 5, self),
