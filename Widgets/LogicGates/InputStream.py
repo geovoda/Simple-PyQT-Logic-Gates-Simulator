@@ -20,11 +20,14 @@ class InputStream(LogicGate):
         self.e1 = QLineEdit()
         self.e1.setValidator(QRegularExpressionValidator(QRegularExpression("[0-1]+")))
         self.e1.setMaxLength(10)
-        self.e1.setFixedWidth(120)
+        self.e1.setFixedWidth(int(240 * self.scaleX))
         self.e1.setFont(QFont("Arial", 12))
         self.e1.setParent(self)
 
         self.show()
-
+    
+    def setScale(self, x, y):
+        super(InputStream, self).setScale(x, y)
+        self.e1.setFixedWidth(int(240 * self.scaleX))
     def paintGate(self):
         self.painter.drawLine(0, 30, 300, 30)

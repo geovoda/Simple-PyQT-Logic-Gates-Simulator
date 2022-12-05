@@ -104,6 +104,7 @@ class LogicGateContainer(QWidget):
     def mousePressEvent(self, e: QtGui.QMouseEvent) -> None:
         if e.button() == QtCore.Qt.LeftButton and self.__linkingTerminal is not None:
             self.__linkingTerminal = None
+            self.__mousePos = None
             self.repaint()
 
     def onTerminalPress(self, terminal):
