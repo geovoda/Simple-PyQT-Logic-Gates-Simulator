@@ -67,6 +67,8 @@ class LogicGateContainer(QWidget):
         for gate in self.logicGates:
             gate.setScale(self.scaleX, self.scaleY)
 
+        self.repaint()
+
 
     def zoomOut(self):
         print("Zoom In")
@@ -76,6 +78,8 @@ class LogicGateContainer(QWidget):
 
         for gate in self.logicGates:
             gate.setScale(self.scaleX, self.scaleY)
+
+        self.repaint()
 
     def toggleSimulation(self):
         print("Incep simularea")
