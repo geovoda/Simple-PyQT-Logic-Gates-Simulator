@@ -1,6 +1,7 @@
 from Widgets.LogicGates.LogicGate import LogicGate
 from Widgets.LogicGates.LogicGateFactoryOld import LogicGateFactoryOld
 from Widgets.LogicGates.Terminal import Terminal
+from Widgets.LogicGates.UI.OR import GATE as OR
 
 
 class OrLogicGate(LogicGate):
@@ -18,4 +19,10 @@ class OrLogicGate(LogicGate):
         self.show()
 
     def paintGate(self):
-        LogicGateFactoryOld().paint(self.painter)
+        for e in OR["elements"]:
+            if e["type"] == "arc":
+                self.painter.drawArc(e["x"], e["y"], e["height"], e["width"], e["start"], e["size"])
+            elif e["type"] == "line":
+                self.painter.drawLine(e["x1"], e["y1"], e["x2"], e["y2"])
+            elif e["type"] == "arcR":
+                self.painter.drawArc(e["rectangle"], e["start"], e["angle"])

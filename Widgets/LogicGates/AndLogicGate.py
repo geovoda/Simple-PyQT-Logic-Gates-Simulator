@@ -1,6 +1,10 @@
+import painter as painter
+from PyQt5.QtGui import QPainter
+
 from Widgets.LogicGates.LogicGate import LogicGate
 from Widgets.LogicGates.LogicGateFactoryOld import LogicGateFactoryOld
 from Widgets.LogicGates.Terminal import Terminal
+from Widgets.LogicGates.UI.AND import GATE as AND
 
 
 class AndLogicGate(LogicGate):
@@ -18,4 +22,8 @@ class AndLogicGate(LogicGate):
         self.show()
 
     def paintGate(self):
-        LogicGateFactoryOld().paint(self.painter)
+        for e in AND["elements"]:
+            if e["type"] == "arc":
+                self.painter.drawArc(e["x"], e["y"], e["height"], e["width"], e["start"], e["size"])
+            elif e["type"] == "line":
+                self.painter.drawLine(e["x1"], e["y1"], e["x2"], e["y2"])
