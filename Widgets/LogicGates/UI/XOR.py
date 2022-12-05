@@ -1,7 +1,7 @@
 from PyQt5.QtCore import QRectF
 
 GATE = {
-    "title": "Poarta OR",
+    "title": "Poarta XOR",
     "width": 250,
     "height": 200,
 
@@ -38,15 +38,22 @@ GATE = {
         {
             "type": "arcR",
             "rectangle": QRectF(30, 0, 100, 200),
-            "start" : -90 * 16,
-            "angle" : 180*16
+            "start": -90 * 16,
+            "angle": 180 * 16
+        },
+
+        {
+            "type": "arcR",
+            "rectangle": QRectF(15, 0, 100, 200),
+            "start": -90 * 16,
+            "angle": 180 * 16
         },
 
         {
             "type": "line",
             "x1": 0,
             "y1": 40,
-            "x2": 50+65,
+            "x2": 50 + 55,
             "y2": 40,
         },
 
@@ -54,7 +61,7 @@ GATE = {
             "type": "line",
             "x1": 0,
             "y1": 160,
-            "x2": 50+65,
+            "x2": 50 + 55,
             "y2": 160,
         },
 
