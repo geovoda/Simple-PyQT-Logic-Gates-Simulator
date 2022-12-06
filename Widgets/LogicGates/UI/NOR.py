@@ -39,7 +39,7 @@ GATE = {
         {
             "type": "circle",
             "x": 196,
-            "y": 196 / 2 - 5,
+            "y": int(196 / 2 - 5),
             "height": 20,
             "width": 20,
         },
