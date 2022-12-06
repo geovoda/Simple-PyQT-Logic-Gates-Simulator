@@ -3,14 +3,15 @@ from PyQt5.QtWidgets import QWidget, QPushButton
 from PyQt5 import QtGui
 from PyQt5 import QtCore
 
-from Widgets.LogicGates.Gates.AndLogicGate import AndLogicGate
-from Widgets.LogicGates.Gates.InputStream import InputStream
-from Widgets.LogicGates.Gates.NandLogicGate import NandLogicGate
-from Widgets.LogicGates.Gates.NorLogicGate import NorLogicGate
-from Widgets.LogicGates.Gates.OrLogicGate import OrLogicGate
-from Widgets.LogicGates.Gates.OutputStream import OutputStream
-from Widgets.LogicGates.Gates.XnorLogicGate import XnorLogicGate
-from Widgets.LogicGates.Gates.XorLogicGate import XorLogicGate
+from Widgets.LogicGates.Factories.LogicGateFactory import LogicGateFactory
+# from Widgets.LogicGates.Gates.AndLogicGate import AndLogicGate
+# from Widgets.LogicGates.Gates.InputStream import InputStream
+# from Widgets.LogicGates.Gates.NandLogicGate import NandLogicGate
+# from Widgets.LogicGates.Gates.NorLogicGate import NorLogicGate
+# from Widgets.LogicGates.Gates.OrLogicGate import OrLogicGate
+# from Widgets.LogicGates.Gates.OutputStream import OutputStream
+# from Widgets.LogicGates.Gates.XnorLogicGate import XnorLogicGate
+# from Widgets.LogicGates.Gates.XorLogicGate import XorLogicGate
 
 
 class LogicGateContainer(QWidget):
@@ -29,6 +30,8 @@ class LogicGateContainer(QWidget):
         self.painter = QPainter(self)
 
         self.initWindow()
+
+        self.logicGatesFactory = LogicGateFactory()
 
     def initWindow(self):
         self.undoButton = QPushButton(self)
@@ -101,22 +104,26 @@ class LogicGateContainer(QWidget):
         print("Redo")
 
     def addGate(self, type):
-        if type == "AND":
-            self.logicGates.append(AndLogicGate(0, 30, self, (self.scaleX, self.scaleY)))
-        elif type == "OR":
-            self.logicGates.append(OrLogicGate(0, 30, self, (self.scaleX, self.scaleY)))
-        elif type == "XOR":
-            self.logicGates.append(XorLogicGate(0, 30, self, (self.scaleX, self.scaleY)))
-        elif type == "NAND":
-            self.logicGates.append(NandLogicGate(0, 30, self, (self.scaleX, self.scaleY)))
-        elif type == "NOR":
-            self.logicGates.append(NorLogicGate(0, 30, self, (self.scaleX, self.scaleY)))
-        elif type == "XNOR":
-            self.logicGates.append(XnorLogicGate(0, 30, self, (self.scaleX, self.scaleY)))
-        elif type == "INPUT_STREAM":
-            self.logicGates.append(InputStream(0, 30, self, (self.scaleX, self.scaleY)))
-        elif type == "OUTPUT_STREAM":
-            self.logicGates.append(OutputStream(0, 30, self, (self.scaleX, self.scaleY)))
+        gate = self.logicGatesFactory.create(type, 0, 30, (self.scaleX, self.scaleY), self)
+        self.logicGates.append(gate)
+        # if type == "AND":
+        #     self.logicGates.append(AndLogicGate(0, 30, self, (self.scaleX, self.scaleY)))
+        # elif type == "OR":
+        #     self.logicGates.append(OrLogicGate(0, 30, self, (self.scaleX, self.scaleY)))
+        # elif type == "XOR":
+        #     self.logicGates.append(XorLogicGate(0, 30, self, (self.scaleX, self.scaleY)))
+        # elif type == "NAND":
+        #     self.logicGates.append(NandLogicGate(0, 30, self, (self.scaleX, self.scaleY)))
+        # elif type == "NOR":
+        #     self.logicGates.append(NorLogicGate(0, 30, self, (self.scaleX, self.scaleY)))
+        # elif type == "XNOR":
+        #     self.logicGates.append(XnorLogicGate(0, 30, self, (self.scaleX, self.scaleY)))
+        # elif type == "INPUT_STREAM":
+        #     self.logicGates.append(InputStream(0, 30, self, (self.scaleX, self.scaleY)))
+        # elif type == "OUTPUT_STREAM":
+        #     self.logicGates.append(OutputStream(0, 30, self, (self.scaleX, self.scaleY)))
+
+
 
     def mouseMoveEvent(self, e: QtGui.QMouseEvent) -> None:
         if self.__linkingTerminal is not None:

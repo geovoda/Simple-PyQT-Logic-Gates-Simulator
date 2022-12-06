@@ -7,7 +7,7 @@ import math
 
 
 class LogicGate(QWidget):
-    def __init__(self, x, y, width, height, scale, parent):
+    def __init__(self, x, y, width, height, scale, parent, painterFactory):
         super().__init__()
         self.__originalWidth = width
         self.__originalHeight = height
@@ -24,6 +24,9 @@ class LogicGate(QWidget):
         self.input1 = 0
         self.input2 = 0
         self.output = 0
+
+        self.painterFactory = painterFactory
+
 
     def mousePressEvent(self, event: QtGui.QMouseEvent) -> None:
         # super(LogicGate, self).mousePressEvent(event)
@@ -46,7 +49,7 @@ class LogicGate(QWidget):
             terminal.setScale(x, y)
 
     def paintGate(self):
-        pass
+        self.paintCallback()
 
     def paintTerminalLinks(self, painter: QPainter):
         # Lista in care punem terminalele intre care liniile au fost deja desenate
