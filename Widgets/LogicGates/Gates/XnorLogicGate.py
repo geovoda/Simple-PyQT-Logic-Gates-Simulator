@@ -1,7 +1,6 @@
-from Widgets.LogicGates.LogicGate import LogicGate
-from Widgets.LogicGates.LogicGateFactoryOld import LogicGateFactoryOld
-from Widgets.LogicGates.Terminal import Terminal
-from Widgets.LogicGates.UI.XNOR import GATE as XNOR
+from Widgets.LogicGates.Gates.LogicGate import LogicGate
+from Widgets.LogicGates.Gates.Terminal import Terminal
+from Widgets.LogicGates.GatesDesign.XNOR import GATE as XNOR
 
 
 class XnorLogicGate(LogicGate):

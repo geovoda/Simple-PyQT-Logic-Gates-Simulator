@@ -1,6 +1,4 @@
-from Widgets.LogicGates.LogicGate import LogicGate
-from Widgets.LogicGates.UI.AND import GATE as AND
-from Widgets.LogicGates.UI.OR import GATE as OR
+from Widgets.LogicGates.GatesDesign.AND import GATE as AND
 
 
 class LogicGateFactoryOld:

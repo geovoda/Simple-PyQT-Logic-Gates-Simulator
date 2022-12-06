@@ -1,9 +1,6 @@
-from PyQt5.QtGui import QPainter
-
-from Widgets.LogicGates.LogicGate import LogicGate
-from Widgets.LogicGates.LogicGateFactoryOld import LogicGateFactoryOld
-from Widgets.LogicGates.Terminal import Terminal
-from Widgets.LogicGates.UI.AND import GATE as AND
+from Widgets.LogicGates.Gates.LogicGate import LogicGate
+from Widgets.LogicGates.Gates.Terminal import Terminal
+from Widgets.LogicGates.GatesDesign.AND import GATE as AND
 
 class AndLogicGate(LogicGate):
     def __init__(self, x, y, parent, scale):

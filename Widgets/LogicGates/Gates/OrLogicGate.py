@@ -1,15 +1,14 @@
-from Widgets.LogicGates.LogicGate import LogicGate
-from Widgets.LogicGates.LogicGateFactoryOld import LogicGateFactoryOld
-from Widgets.LogicGates.Terminal import Terminal
-from Widgets.LogicGates.UI.XOR import GATE as XOR
+from Widgets.LogicGates.Gates.LogicGate import LogicGate
+from Widgets.LogicGates.Gates.Terminal import Terminal
+from Widgets.LogicGates.GatesDesign.OR import GATE as OR
 
 
-class XorLogicGate(LogicGate):
+class OrLogicGate(LogicGate):
     def __init__(self, x, y, parent, scale):
         WIDTH = 250
         HEIGHT = 200
-        super(XorLogicGate, self).__init__(x, y, WIDTH, HEIGHT, scale, parent)
-        self.type = "XOR"
+        super(OrLogicGate, self).__init__(x, y, WIDTH, HEIGHT, scale, parent)
+        self.type = "OR"
         self.terminals = [
             Terminal("INPUT", 0, 40 - 5, self),
             Terminal("INPUT", 0, 160 - 5, self),
@@ -19,7 +18,7 @@ class XorLogicGate(LogicGate):
         self.show()
 
     def paintGate(self):
-        for e in XOR["elements"]:
+        for e in OR["elements"]:
             if e["type"] == "arc":
                 self.painter.drawArc(e["x"], e["y"], e["height"], e["width"], e["start"], e["size"])
             elif e["type"] == "line":

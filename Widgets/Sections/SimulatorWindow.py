@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QWidget, QHBoxLayout, QScrollArea
-from Widgets.LogicGateContainer import LogicGateContainer
-from Widgets.LogicGateMenu import LogicGateMenu
+from Widgets.Sections.LogicGateContainer import LogicGateContainer
+from Widgets.Sections.LogicGateMenu import LogicGateMenu
 
 
 class MainWindow(QWidget):

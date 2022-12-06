@@ -1,10 +1,9 @@
-from PyQt5 import QtCore
 from PyQt5.QtCore import QRegularExpression
-from PyQt5.QtGui import QRegularExpressionValidator, QFont, QPainter, QPen
+from PyQt5.QtGui import QRegularExpressionValidator, QFont
 from PyQt5.QtWidgets import QLineEdit
 
-from Widgets.LogicGates.LogicGate import LogicGate
-from Widgets.LogicGates.Terminal import Terminal
+from Widgets.LogicGates.Gates.LogicGate import LogicGate
+from Widgets.LogicGates.Gates.Terminal import Terminal
 
 class OutputStream(LogicGate):
     def __init__(self, x, y, parent, scale):

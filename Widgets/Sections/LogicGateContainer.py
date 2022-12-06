@@ -1,20 +1,16 @@
-from asyncio import wait
-from time import sleep
-
-from PyQt5.QtCore import QEvent, QRegularExpression
-from PyQt5.QtGui import QPainter, QPen, QIntValidator, QFont, QRegularExpressionValidator
-from PyQt5.QtWidgets import QWidget, QLayout, QPushButton, QLineEdit
+from PyQt5.QtGui import QPainter, QPen
+from PyQt5.QtWidgets import QWidget, QPushButton
 from PyQt5 import QtGui
 from PyQt5 import QtCore
 
-from Widgets.LogicGates.AndLogicGate import AndLogicGate
-from Widgets.LogicGates.InputStream import InputStream
-from Widgets.LogicGates.NandLogicGate import NandLogicGate
-from Widgets.LogicGates.NorLogicGate import NorLogicGate
-from Widgets.LogicGates.OrLogicGate import OrLogicGate
-from Widgets.LogicGates.OutputStream import OutputStream
-from Widgets.LogicGates.XnorLogicGate import XnorLogicGate
-from Widgets.LogicGates.XorLogicGate import XorLogicGate
+from Widgets.LogicGates.Gates.AndLogicGate import AndLogicGate
+from Widgets.LogicGates.Gates.InputStream import InputStream
+from Widgets.LogicGates.Gates.NandLogicGate import NandLogicGate
+from Widgets.LogicGates.Gates.NorLogicGate import NorLogicGate
+from Widgets.LogicGates.Gates.OrLogicGate import OrLogicGate
+from Widgets.LogicGates.Gates.OutputStream import OutputStream
+from Widgets.LogicGates.Gates.XnorLogicGate import XnorLogicGate
+from Widgets.LogicGates.Gates.XorLogicGate import XorLogicGate
 
 
 class LogicGateContainer(QWidget):
