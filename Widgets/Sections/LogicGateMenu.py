@@ -2,6 +2,8 @@ from PyQt5.QtWidgets import QWidget, QVBoxLayout, QPushButton
 from PyQt5 import QtGui
 from PyQt5 import QtCore
 
+from Widgets.Buttons.GateButton import GateButton
+
 
 class LogicGateMenu(QWidget):
     def __init__(self, parentWindow):
@@ -47,6 +49,10 @@ class LogicGateMenu(QWidget):
         button.clicked.connect(lambda: self.createLogicGate("XNOR"))
         button.setIcon(QtGui.QIcon('xnor.png'))
         button.setIconSize(QtCore.QSize(50, 50))
+        vbox.addWidget(button)
+
+        button = GateButton("AND", self)
+        button.connect(lambda: self.createLogicGate("AND"))
         vbox.addWidget(button)
 
         self.setLayout(vbox)
