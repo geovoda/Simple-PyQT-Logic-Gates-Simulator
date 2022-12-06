@@ -2,6 +2,7 @@ from Widgets.LogicGates.Gates.LogicGate import LogicGate
 from Widgets.LogicGates.Gates.Terminal import Terminal
 from Widgets.LogicGates.GatesDesign.AND import GATE as AND
 
+
 class AndLogicGate(LogicGate):
     def __init__(self, x, y, parent, scale, painterFactory):
         WIDTH = 250
@@ -15,4 +16,3 @@ class AndLogicGate(LogicGate):
         ]
 
         self.show()
-

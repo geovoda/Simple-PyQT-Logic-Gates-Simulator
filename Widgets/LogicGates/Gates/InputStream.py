@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import QLineEdit
 from Widgets.LogicGates.Gates.LogicGate import LogicGate
 from Widgets.LogicGates.Gates.Terminal import Terminal
 
+
 class InputStream(LogicGate):
     def __init__(self, x, y, parent, scale, paintFactory):
         WIDTH = 300
@@ -25,14 +26,15 @@ class InputStream(LogicGate):
         self.e1.setFont(QFont("Arial", int(24 * self.scaleX)))
         self.e1.setParent(self)
         self.show()
-    
+
     def setScale(self, x, y):
         super(InputStream, self).setScale(x, y)
         self.e1.setFixedWidth(int(240 * self.scaleX))
         self.e1.setFixedHeight(int(56 * self.scaleX))
         self.e1.setFont(QFont("Arial", int(24 * self.scaleX)))
+
     def paintGate(self):
         self.painter.drawLine(0, 30, 300, 30)
+
     def getOutput(self):
         return self.e1.displayText()
-
