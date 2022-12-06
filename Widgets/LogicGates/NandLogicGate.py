@@ -1,4 +1,3 @@
-import painter as painter
 from PyQt5.QtGui import QPainter
 
 from Widgets.LogicGates.LogicGate import LogicGate

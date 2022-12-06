@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QPushButton
-from pyqt5_plugins.examplebuttonplugin import QtGui
-from pyqt5_plugins.examples.exampleqmlitem import QtCore
+from PyQt5 import QtGui
+from PyQt5 import QtCore
 
 
 class LogicGateMenu(QWidget):
