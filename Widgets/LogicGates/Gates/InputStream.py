@@ -6,10 +6,10 @@ from Widgets.LogicGates.Gates.LogicGate import LogicGate
 from Widgets.LogicGates.Gates.Terminal import Terminal
 
 class InputStream(LogicGate):
-    def __init__(self, x, y, parent, scale):
+    def __init__(self, x, y, parent, scale, paintFactory):
         WIDTH = 300
         HEIGHT = 60
-        super(InputStream, self).__init__(x, y, WIDTH, HEIGHT, scale, parent)
+        super(InputStream, self).__init__(x, y, WIDTH, HEIGHT, scale, parent, paintFactory)
         self.type = "INPUT"
         self.terminals = [
             Terminal("OUTPUT", 280, 20, self),

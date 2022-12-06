@@ -4,10 +4,10 @@ from Widgets.LogicGates.GatesDesign.XNOR import GATE as XNOR
 
 
 class XnorLogicGate(LogicGate):
-    def __init__(self, x, y, parent, scale):
+    def __init__(self, x, y, parent, scale, painterFactory):
         WIDTH = 250
         HEIGHT = 200
-        super(XnorLogicGate, self).__init__(x, y, WIDTH, HEIGHT, scale, parent)
+        super(XnorLogicGate, self).__init__(x, y, WIDTH, HEIGHT, scale, parent, painterFactory)
         self.type = "XNOR"
         self.terminals = [
             Terminal("INPUT", 0, 40 - 5, self),
@@ -17,13 +17,3 @@ class XnorLogicGate(LogicGate):
 
         self.show()
 
-    def paintGate(self):
-        for e in XNOR["elements"]:
-            if e["type"] == "arc":
-                self.painter.drawArc(e["x"], e["y"], e["height"], e["width"], e["start"], e["size"])
-            elif e["type"] == "line":
-                self.painter.drawLine(e["x1"], e["y1"], e["x2"], e["y2"])
-            elif e["type"] == "arcR":
-                self.painter.drawArc(e["rectangle"], e["start"], e["angle"])
-            elif e["type"] == "circle":
-                self.painter.drawEllipse(e["x"], e["y"], e["height"], e["width"])

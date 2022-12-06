@@ -13,8 +13,25 @@ class PaintFactory:
             self.gatesDesign[type] = AND
 
         elif type == "OR":
-            from Widgets.LogicGates.GatesDesign.AND import GATE as OR
+            from Widgets.LogicGates.GatesDesign.OR import GATE as OR
             self.gatesDesign[type] = OR
+
+        elif type == "XOR":
+            from Widgets.LogicGates.GatesDesign.XOR import GATE as XOR
+            self.gatesDesign[type] = XOR
+
+        elif type == "NAND":
+            from Widgets.LogicGates.GatesDesign.NAND import GATE as NAND
+            self.gatesDesign[type] = NAND
+
+        elif type == "NOR":
+            from Widgets.LogicGates.GatesDesign.NOR import GATE as NOR
+            self.gatesDesign[type] = NOR
+
+        elif type == "XNOR":
+            from Widgets.LogicGates.GatesDesign.XNOR import GATE as XNOR
+            self.gatesDesign[type] = XNOR
+
 
         else:
             return

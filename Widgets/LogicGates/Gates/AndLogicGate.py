@@ -16,5 +16,3 @@ class AndLogicGate(LogicGate):
 
         self.show()
 
-    def paintGate(self):
-        self.painterFactory.paintGate(self.type, self.painter)
