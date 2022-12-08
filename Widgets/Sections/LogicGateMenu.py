@@ -20,23 +20,23 @@ class LogicGateMenu(QWidget):
         vbox.addWidget(button)
 
         button = GateButton("NAND", self)
-        button.connect(lambda: self.createLogicGate("OR"))
+        button.connect(lambda: self.createLogicGate("NAND"))
         vbox.addWidget(button)
 
         button = GateButton("OR", self)
-        button.connect(lambda: self.createLogicGate("AND"))
+        button.connect(lambda: self.createLogicGate("OR"))
         vbox.addWidget(button)
 
         button = GateButton("NOR", self)
-        button.connect(lambda: self.createLogicGate("OR"))
+        button.connect(lambda: self.createLogicGate("NOR"))
         vbox.addWidget(button)
 
         button = GateButton("XNOR", self)
-        button.connect(lambda: self.createLogicGate("AND"))
+        button.connect(lambda: self.createLogicGate("XNOR"))
         vbox.addWidget(button)
 
-        button = GateButton("OR", self)
-        button.connect(lambda: self.createLogicGate("OR"))
+        button = GateButton("XOR", self)
+        button.connect(lambda: self.createLogicGate("XOR"))
         vbox.addWidget(button)
 
         self.setLayout(vbox)

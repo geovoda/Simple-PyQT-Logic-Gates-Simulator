@@ -73,7 +73,7 @@ class LogicGate(QWidget):
         self.painter.scale(self.scaleX, self.scaleY)
 
         pen = QPen()
-        pen.setColor(QtCore.Qt.black)
+        pen.setColor(QColor(41, 98, 255))
         pen.setWidth(5)
         self.painter.setPen(pen)
 
