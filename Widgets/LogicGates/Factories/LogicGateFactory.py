@@ -6,7 +6,7 @@ from Widgets.LogicGates.Gates.NorLogicGate import NorLogicGate
 from Widgets.LogicGates.Gates.OrLogicGate import OrLogicGate
 from Widgets.LogicGates.Gates.XnorLogicGate import XnorLogicGate
 from Widgets.LogicGates.Gates.XorLogicGate import XorLogicGate
-
+from Widgets.LogicGates.Gates.OutputStream import OutputStream
 
 class LogicGateFactory:
     def __init__(self):
@@ -17,7 +17,8 @@ class LogicGateFactory:
             "NAND": NandLogicGate,
             "NOR": NorLogicGate,
             "XNOR": XnorLogicGate,
-            "INPUT_STREAM": InputStream
+            "INPUT_STREAM": InputStream,
+            "OUTPUT_STREAM": OutputStream
 
         }
 

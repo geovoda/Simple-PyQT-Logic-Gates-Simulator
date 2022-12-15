@@ -80,3 +80,6 @@ class Terminal(QWidget):
 
     def getConnectedTerminal(self):
         return self.connectedTerminal
+
+    def getOutput(self, index):
+        return self.parent().getOutput(index)

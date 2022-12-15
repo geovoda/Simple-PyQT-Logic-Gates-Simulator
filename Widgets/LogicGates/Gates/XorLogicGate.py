@@ -16,3 +16,6 @@ class XorLogicGate(LogicGate):
         ]
 
         self.show()
+
+    def makeOperation(self, item1, item2):
+        return item1 ^ item2

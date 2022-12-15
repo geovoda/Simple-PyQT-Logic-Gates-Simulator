@@ -89,10 +89,30 @@ class LogicGateContainer(QWidget):
         self.repaint()
 
     def toggleSimulation(self):
+        outputList = []
+
+        # Verificam daca au fost conectate toate bornele
         for gate in self.logicGates:
+            for terminal in gate.terminals:
+                if terminal.getConnectedTerminal() is None:
+                    print("Nu toate bornele sunt conectate")
+                    return
+
+            if gate.type == "OUTPUT":
+                outputList.append(gate)
+
             if gate.type == "INPUT":
-                gate.output = gate.getOutput()
-                print(gate.output)
+                gate.prepareGate()
+
+        for gate in outputList:
+            gate.processOutput()
+
+
+
+
+
+
+
 
 
 

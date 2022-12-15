@@ -16,3 +16,6 @@ class NandLogicGate(LogicGate):
         ]
 
         self.show()
+
+    def makeOperation(self, item1, item2):
+        return not(item1 and item2)

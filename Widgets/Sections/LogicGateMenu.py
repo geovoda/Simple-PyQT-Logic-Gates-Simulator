@@ -15,6 +15,10 @@ class LogicGateMenu(QWidget):
         button.clicked.connect(lambda: self.createLogicGate("INPUT_STREAM"))
         vbox.addWidget(button)
 
+        button = QPushButton("OUTPUT")
+        button.clicked.connect(lambda: self.createLogicGate("OUTPUT_STREAM"))
+        vbox.addWidget(button)
+
         button = GateButton("AND", self)
         button.connect(lambda: self.createLogicGate("AND"))
         vbox.addWidget(button)

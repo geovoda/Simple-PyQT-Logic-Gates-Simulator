@@ -80,3 +80,22 @@ class LogicGate(QWidget):
         self.paintGate()
 
         self.painter.end()
+
+    # def getInput(self):
+    #     for terminal in self.terminals:
+    #         if terminal.type == "INPUT":
+
+    def makeOperation(self, item1, item2):
+        pass
+
+    def getOutput(self, index):
+        inputResults = []
+        for terminal in self.terminals:
+            if terminal.type == "INPUT":
+                inputResults.append(terminal.getConnectedTerminal().getOutput(index))
+
+        result = inputResults[0]
+        for item in inputResults:
+            result = self.makeOperation(result, item)
+
+        return result
