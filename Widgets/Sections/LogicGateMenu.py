@@ -35,12 +35,12 @@ class LogicGateMenu(QWidget):
         button.connect(lambda: self.createLogicGate("NOR"))
         vbox.addWidget(button)
 
-        button = GateButton("XNOR", self)
-        button.connect(lambda: self.createLogicGate("XNOR"))
-        vbox.addWidget(button)
-
         button = GateButton("XOR", self)
         button.connect(lambda: self.createLogicGate("XOR"))
+        vbox.addWidget(button)
+
+        button = GateButton("XNOR", self)
+        button.connect(lambda: self.createLogicGate("XNOR"))
         vbox.addWidget(button)
 
         self.setLayout(vbox)

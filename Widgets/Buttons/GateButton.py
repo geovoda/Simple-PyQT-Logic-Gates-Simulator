@@ -13,8 +13,8 @@ class GateButton(QWidget):
     def __init__(self, type, parent):
         super().__init__()
         self.type = type
-        self.setFixedHeight(40)
-        self.setFixedWidth(40)
+        self.setFixedHeight(60)
+        self.setFixedWidth(60)
 
         # name = QLabel()
         # name.setText(type)
@@ -25,7 +25,7 @@ class GateButton(QWidget):
 
         icon = GateIcon(type, self.paintFactory)
         icon.setAlignment(Qt.AlignHCenter)
-        icon.setFixedHeight(20)
+        icon.setFixedHeight(40)
 
         vbox = QVBoxLayout()
         vbox.setAlignment(Qt.AlignHCenter)
@@ -37,7 +37,7 @@ class GateButton(QWidget):
 
         self.setParent(parent)
 
-        self.brush = QColor(41,98, 255)
+        self.brush = QColor(41, 98, 255)
         self.installEventFilter(self)
 
         self.callback = None
@@ -68,7 +68,7 @@ class GateButton(QWidget):
         self.painter.setPen(col)
 
         self.painter.setBrush(self.brush)
-        self.painter.drawEllipse(0, 0, 40, 40)
+        self.painter.drawEllipse(0, 0, 60, 60)
 
         self.painter.end()
 

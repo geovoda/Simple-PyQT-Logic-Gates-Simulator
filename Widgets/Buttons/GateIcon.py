@@ -10,18 +10,18 @@ class GateIcon(QLabel):
 
         self.paintFactory = paintFactory
         self.painter = QPainter(self)
-        self.setFixedWidth(25)
-        self.setFixedHeight(20)
+        self.setFixedWidth(45)
+        self.setFixedHeight(40)
 
 
     def paintEvent(self, event):
         self.painter.begin(self)
         self.painter.setRenderHint(QPainter.Antialiasing)
-        self.painter.scale(0.1, 0.1)
+        self.painter.scale(0.2, 0.2)
 
         pen = QPen()
         pen.setColor(QtCore.Qt.white)
-        pen.setWidth(15)
+        pen.setWidth(5)
         self.painter.setPen(pen)
 
         self.paintFactory.paintGate(self.type, self.painter)
