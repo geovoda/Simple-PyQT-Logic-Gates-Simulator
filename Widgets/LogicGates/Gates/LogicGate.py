@@ -95,7 +95,7 @@ class LogicGate(QWidget):
                 inputResults.append(terminal.getConnectedTerminal().getOutput(index))
 
         result = inputResults[0]
-        for item in inputResults:
+        for item in inputResults[1:]:
             result = self.makeOperation(result, item)
 
         return result

@@ -10,13 +10,15 @@ class MainWindow(QWidget):
         self.logicGateMenu = LogicGateMenu(self)
         self.logicGateContainer = LogicGateContainer(parent=self)
 
-        scroll = QScrollArea()
-        scroll.setWidget(self.logicGateMenu)
-        scroll.setWidgetResizable(True)
-        scroll.setFixedWidth(100)
+
+        scrollableArea = QScrollArea()
+        scrollableArea.setWidget(self.logicGateMenu)
+        scrollableArea.setWidgetResizable(True)
+        scrollableArea.setFixedWidth(100)
+        scrollableArea.setStyleSheet("QScrollArea{border: 1px solid black; padding: 10px;}")
 
         hbox = QHBoxLayout()
-        hbox.addWidget(scroll)
+        hbox.addWidget(scrollableArea)
         hbox.addWidget(self.logicGateContainer, 1)
 
         self.setLayout(hbox)

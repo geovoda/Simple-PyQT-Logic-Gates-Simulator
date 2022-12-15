@@ -13,7 +13,6 @@ class GateIcon(QLabel):
         self.setFixedWidth(45)
         self.setFixedHeight(40)
 
-
     def paintEvent(self, event):
         self.painter.begin(self)
         self.painter.setRenderHint(QPainter.Antialiasing)
