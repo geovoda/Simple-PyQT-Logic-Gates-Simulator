@@ -34,7 +34,6 @@ class GateButton(QWidget):
         vbox.setSpacing(0)
 
         self.setLayout(vbox)
-
         self.setParent(parent)
 
         self.brush = QColor(41, 98, 255)

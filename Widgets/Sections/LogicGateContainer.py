@@ -56,6 +56,7 @@ class LogicGateContainer(QWidget):
         simulateButton.setText("Simulare")  # text
         simulateButton.clicked.connect(self.toggleSimulation)
         simulateButton.setToolTip("Simuleaza circuitul")  # Tool tip
+        simulateButton.setStyleSheet("QPushButton{border: none; background-color: blue; padding: 5px 20px; color: white; border-radius: 5px;} QPushButton:hover{background-color: red;}")
         simulateButton.move(210, 1)
         layout.addWidget(simulateButton)
 

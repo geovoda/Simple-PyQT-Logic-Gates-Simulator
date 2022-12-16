@@ -13,10 +13,10 @@ class InputStream(LogicGate):
         super(InputStream, self).__init__(x, y, WIDTH, HEIGHT, scale, parent, paintFactory)
         self.type = "INPUT"
         self.terminals = [
-            Terminal("OUTPUT", 280, 20, self),
+            Terminal("OUTPUT", 280, 23, self),
         ]
 
-        self.setStyleSheet("background-color: yellow;")
+        self.setStyleSheet("background-color: #c9d8ff; border: 2px solid #2962FF; border-radius: 5px;")
 
         self.maximumElements = 10
 

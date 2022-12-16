@@ -16,7 +16,7 @@ class OutputStream(LogicGate):
             Terminal("INPUT", 1, 20, self),
             #Terminal("OUTPUT", 280, 20, self)
         ]
-        self.setStyleSheet("background-color: yellow;")
+        self.setStyleSheet("background-color: #c9d8ff; border: 2px solid #2962FF; border-radius: 5px;")
         self.e1 = QLineEdit()
         self.e1.setValidator(QRegularExpressionValidator(QRegularExpression("[0-1]+")))
         self.e1.setMaxLength(10)
@@ -36,7 +36,7 @@ class OutputStream(LogicGate):
         self.e1.setDisabled(True)
 
     def paintGate(self):
-        self.painter.drawLine(0, 30, 300, 30)
+        self.painter.drawLine(0, 30, 60, 30)
 
     def processOutput(self):
         text = ""
