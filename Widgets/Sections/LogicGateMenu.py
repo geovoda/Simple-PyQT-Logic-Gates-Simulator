@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QPushButton
 from PyQt5 import QtGui
 from PyQt5 import QtCore
-
+from PyQt5.QtCore import Qt
 from Widgets.Buttons.GateButton import GateButton
 
 
@@ -43,6 +43,7 @@ class LogicGateMenu(QWidget):
         button.connect(lambda: self.createLogicGate("XNOR"))
         vbox.addWidget(button)
 
+        vbox.setAlignment(Qt.AlignTop)
         self.setLayout(vbox)
         self.parentWindow = parentWindow
 

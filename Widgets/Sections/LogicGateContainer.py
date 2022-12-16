@@ -1,6 +1,6 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPainter, QPen
-from PyQt5.QtWidgets import QWidget, QPushButton, QSlider, QHBoxLayout
+from PyQt5.QtWidgets import QWidget, QPushButton, QSlider, QHBoxLayout, QLabel
 from PyQt5 import QtGui
 from PyQt5 import QtCore
 
@@ -72,6 +72,8 @@ class LogicGateContainer(QWidget):
 
         self.setLayout(layout)
 
+
+
         self.show()
 
     def processZoom(self):
@@ -101,16 +103,6 @@ class LogicGateContainer(QWidget):
         for gate in outputList:
             gate.processOutput()
 
-
-
-
-
-
-
-
-
-
-
     def undo(self):
         print("Undo")
 
@@ -120,24 +112,6 @@ class LogicGateContainer(QWidget):
     def addGate(self, type):
         gate = self.logicGatesFactory.create(type, 0, 30, self.scale, self)
         self.logicGates.append(gate)
-        # if type == "AND":
-        #     self.logicGates.append(AndLogicGate(0, 30, self, (self.scaleX, self.scaleY)))
-        # elif type == "OR":
-        #     self.logicGates.append(OrLogicGate(0, 30, self, (self.scaleX, self.scaleY)))
-        # elif type == "XOR":
-        #     self.logicGates.append(XorLogicGate(0, 30, self, (self.scaleX, self.scaleY)))
-        # elif type == "NAND":
-        #     self.logicGates.append(NandLogicGate(0, 30, self, (self.scaleX, self.scaleY)))
-        # elif type == "NOR":
-        #     self.logicGates.append(NorLogicGate(0, 30, self, (self.scaleX, self.scaleY)))
-        # elif type == "XNOR":
-        #     self.logicGates.append(XnorLogicGate(0, 30, self, (self.scaleX, self.scaleY)))
-        # elif type == "INPUT_STREAM":
-        #     self.logicGates.append(InputStream(0, 30, self, (self.scaleX, self.scaleY)))
-        # elif type == "OUTPUT_STREAM":
-        #     self.logicGates.append(OutputStream(0, 30, self, (self.scaleX, self.scaleY)))
-
-
 
     def mouseMoveEvent(self, e: QtGui.QMouseEvent) -> None:
         if self.__linkingTerminal is not None:
@@ -177,8 +151,8 @@ class LogicGateContainer(QWidget):
         self.painter.begin(self)
         self.painter.setRenderHint(QPainter.Antialiasing)
         pen = QPen()
-        pen.setColor(QtCore.Qt.red)
-        pen.setWidth(5)
+        pen.setColor(QtCore.Qt.black)
+        pen.setWidth(3)
         self.painter.setPen(pen)
 
         if self.__linkingTerminal is not None and self.__mousePos is not None:

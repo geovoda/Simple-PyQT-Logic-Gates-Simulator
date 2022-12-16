@@ -21,7 +21,7 @@ class Terminal(QWidget):
         self.setParent(parent)
         self.painter = QPainter(self)
         self.installEventFilter(self)
-        self.pen = QtCore.Qt.red
+        self.pen = QColor(41, 98, 255)
 
         self.connectedTerminal = None
 
@@ -62,11 +62,14 @@ class Terminal(QWidget):
 
     def eventFilter(self, object, event):
         if event.type() == QEvent.Enter:
-            self.pen = QtCore.Qt.green
+            if self.connectedTerminal is None:
+                self.pen = QtCore.Qt.green
+            else:
+                self.pen = QtCore.Qt.red
             self.repaint()
             return True
         elif event.type() == QEvent.Leave:
-            self.pen = QtCore.Qt.red
+            self.pen = QColor(41, 98, 255)
             self.repaint()
         return False
 
