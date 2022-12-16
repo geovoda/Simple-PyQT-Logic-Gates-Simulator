@@ -39,14 +39,17 @@ class LogicGate(QWidget):
             self.move(self.mapToParent(event.pos() - self.__mousePressPosition))
             self.parent().repaint()
 
-    def setScale(self, x, y):
-        self.scaleX, self.scaleY = x, y
+    def setScale(self, scaleX, scaleY):
+        newX = int(self.x() * scaleX / self.scaleX)
+        newY = int(self.y() * scaleY / self.scaleY)
 
-        self.setGeometry(self.x(), self.y(), int(self.__originalWidth * self.scaleX),
-                         int(self.__originalHeight * self.scaleY))
+        self.setGeometry(newX, newY, int(self.__originalWidth * scaleX),
+                         int(self.__originalHeight * scaleY))
 
         for terminal in self.terminals:
-            terminal.setScale(x, y)
+            terminal.setScale(scaleX, scaleY)
+
+        self.scaleX, self.scaleY = scaleX, scaleY
 
     def paintGate(self):
         self.painterFactory.paintGate(self.type, self.painter)
