@@ -12,7 +12,7 @@ class Terminal(QWidget):
         self.type = None
         self.connection = None
         self.value = False
-        self.setGeometry(int(x * parent.scaleX), int(y * parent.scaleY), 10, 10)
+        self.setGeometry(int(x * parent.scale), int(y * parent.scale), 10, 10)
         self.setType(type)
         self.multipleLinks = multipleLinks
 
@@ -46,10 +46,11 @@ class Terminal(QWidget):
 
         self.painter.end()
 
-    def setScale(self, x, y):
-        self.scaleX, self.scaleY = x, y
+    def setScale(self, scale):
+        self.scale = scale
+        print(scale)
 
-        self.setGeometry(int(self.__originalX * self.scaleX), int(self.__originalY * self.scaleY), 10, 10)
+        self.setGeometry(int(self.__originalX * self.scale), int(self.__originalY * self.scale), 10, 10)
 
     def mousePressEvent(self, event: QtGui.QMouseEvent) -> None:
         super(Terminal, self).mousePressEvent(event)

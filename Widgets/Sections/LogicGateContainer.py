@@ -1,5 +1,6 @@
+from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPainter, QPen
-from PyQt5.QtWidgets import QWidget, QPushButton
+from PyQt5.QtWidgets import QWidget, QPushButton, QSlider, QHBoxLayout
 from PyQt5 import QtGui
 from PyQt5 import QtCore
 
@@ -22,8 +23,7 @@ class LogicGateContainer(QWidget):
         self.__linkingTerminal = None
         self.__mousePos = None
 
-        self.scaleX = 0.5
-        self.scaleY = 0.5
+        self.scale = 0.5
 
         self.setMouseTracking(True)
 
@@ -34,57 +34,51 @@ class LogicGateContainer(QWidget):
         self.logicGatesFactory = LogicGateFactory()
 
     def initWindow(self):
-        self.undoButton = QPushButton(self)
-        self.undoButton.setText("Undo")  # text
-        self.undoButton.setShortcut('Ctrl+Z')  # shortcut key
-        self.undoButton.clicked.connect(self.undo)
-        self.undoButton.setToolTip("Anuleaza ultima actiune ")  # Tool tip
-        self.undoButton.move(10, 1)
+        layout = QHBoxLayout()
 
-        self.redoButton = QPushButton(self)
-        self.redoButton.setText("Redo")  # text
-        self.redoButton.setShortcut('Ctrl+Z')  # shortcut key
-        self.redoButton.clicked.connect(self.redo)
-        self.redoButton.setToolTip("Reface ultima actiune")  # Tool tip
-        self.redoButton.move(110, 1)
+        undoButton = QPushButton(self)
+        undoButton.setText("Undo")  # text
+        undoButton.setShortcut('Ctrl+Z')  # shortcut key
+        undoButton.clicked.connect(self.undo)
+        undoButton.setToolTip("Anuleaza ultima actiune ")  # Tool tip
+        undoButton.move(10, 1)
+        layout.addWidget(undoButton)
 
-        self.simulateButton = QPushButton(self)
-        self.simulateButton.setText("Simulare")  # text
-        self.simulateButton.clicked.connect(self.toggleSimulation)
-        self.simulateButton.setToolTip("Simuleaza circuitul")  # Tool tip
-        self.simulateButton.move(210, 1)
+        redoButton = QPushButton(self)
+        redoButton.setText("Redo")  # text
+        redoButton.setShortcut('Ctrl+Z')  # shortcut key
+        redoButton.clicked.connect(self.redo)
+        redoButton.setToolTip("Reface ultima actiune")  # Tool tip
+        redoButton.move(110, 1)
+        layout.addWidget(redoButton)
 
-        self.zoomInButton = QPushButton(self)
-        self.zoomInButton.setText("Zoom in")
-        self.zoomInButton.clicked.connect(self.zoomIn)
-        self.zoomInButton.move(310, 1)
+        simulateButton = QPushButton(self)
+        simulateButton.setText("Simulare")  # text
+        simulateButton.clicked.connect(self.toggleSimulation)
+        simulateButton.setToolTip("Simuleaza circuitul")  # Tool tip
+        simulateButton.move(210, 1)
+        layout.addWidget(simulateButton)
 
-        self.zoomOutButton = QPushButton(self)
-        self.zoomOutButton.setText("Zoom out")  # text
-        self.zoomOutButton.clicked.connect(self.zoomOut)
-        self.zoomOutButton.move(410, 1)
+        self.slider = QSlider(Qt.Horizontal)
+        self.slider.setMinimum(10)
+        self.slider.setMaximum(90)
+        self.slider.setValue(50)
+        self.slider.setTickPosition(QSlider.TicksBelow)
+        self.slider.setTickInterval(2)
+        self.slider.move(410, 1)
+        self.slider.valueChanged.connect(self.processZoom)
+        layout.addWidget(self.slider)
+        layout.setAlignment(Qt.AlignTop)
+
+        self.setLayout(layout)
 
         self.show()
 
-    def zoomIn(self):
-        print("Zoom In")
-
-        self.scaleX = self.scaleX + 0.1
-        self.scaleY = self.scaleY + 0.1
+    def processZoom(self):
+        self.scale = self.slider.value() / 100
 
         for gate in self.logicGates:
-            gate.setScale(self.scaleX, self.scaleY)
-
-        self.repaint()
-
-    def zoomOut(self):
-        print("Zoom In")
-
-        self.scaleX = self.scaleX - 0.1
-        self.scaleY = self.scaleY - 0.1
-
-        for gate in self.logicGates:
-            gate.setScale(self.scaleX, self.scaleY)
+            gate.setScale(self.scale)
 
         self.repaint()
 
@@ -124,7 +118,7 @@ class LogicGateContainer(QWidget):
         print("Redo")
 
     def addGate(self, type):
-        gate = self.logicGatesFactory.create(type, 0, 30, (self.scaleX, self.scaleY), self)
+        gate = self.logicGatesFactory.create(type, 0, 30, self.scale, self)
         self.logicGates.append(gate)
         # if type == "AND":
         #     self.logicGates.append(AndLogicGate(0, 30, self, (self.scaleX, self.scaleY)))

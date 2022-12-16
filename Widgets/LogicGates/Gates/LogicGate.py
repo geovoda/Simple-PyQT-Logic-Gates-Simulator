@@ -15,8 +15,8 @@ class LogicGate(QWidget):
 
         self.__mousePressPosition = None
 
-        self.scaleX, self.scaleY = scale
-        self.setGeometry(x, y, int(width * self.scaleX), int(height * self.scaleY))
+        self.scale = scale
+        self.setGeometry(x, y, int(width * scale), int(height * scale))
         self.painter = QPainter(self)
         self.terminals = []
         self.setMouseTracking(True)
@@ -39,17 +39,17 @@ class LogicGate(QWidget):
             self.move(self.mapToParent(event.pos() - self.__mousePressPosition))
             self.parent().repaint()
 
-    def setScale(self, scaleX, scaleY):
-        newX = int(self.x() * scaleX / self.scaleX)
-        newY = int(self.y() * scaleY / self.scaleY)
+    def setScale(self, scale):
+        newX = int(self.x() * scale / self.scale)
+        newY = int(self.y() * scale / self.scale)
 
-        self.setGeometry(newX, newY, int(self.__originalWidth * scaleX),
-                         int(self.__originalHeight * scaleY))
+        self.setGeometry(newX, newY, int(self.__originalWidth * scale),
+                         int(self.__originalHeight * scale))
 
         for terminal in self.terminals:
-            terminal.setScale(scaleX, scaleY)
+            terminal.setScale(scale)
 
-        self.scaleX, self.scaleY = scaleX, scaleY
+        self.scale = scale
 
     def paintGate(self):
         self.painterFactory.paintGate(self.type, self.painter)
@@ -73,7 +73,7 @@ class LogicGate(QWidget):
     def paintEvent(self, event):
         self.painter.begin(self)
         self.painter.setRenderHint(QPainter.Antialiasing)
-        self.painter.scale(self.scaleX, self.scaleY)
+        self.painter.scale(self.scale, self.scale)
 
         pen = QPen()
         pen.setColor(QColor(41, 98, 255))
