@@ -1,3 +1,5 @@
+import uuid
+
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPainter, QColor, QPen
 from PyQt5.QtWidgets import QWidget
@@ -9,6 +11,7 @@ import math
 class LogicGate(QWidget):
     def __init__(self, x, y, width, height, scale, parent, painterFactory):
         super().__init__()
+        self.uuid = str(uuid.uuid1())
         self.type = None
         self.__originalWidth = width
         self.__originalHeight = height

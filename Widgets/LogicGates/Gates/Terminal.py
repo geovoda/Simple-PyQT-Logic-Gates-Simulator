@@ -1,3 +1,5 @@
+import uuid
+
 from PyQt5 import QtGui, QtCore
 from PyQt5.QtCore import QPoint, QEvent
 from PyQt5.QtGui import QColor, QPainter, QPen
@@ -7,6 +9,7 @@ from PyQt5.QtWidgets import QWidget
 class Terminal(QWidget):
     def __init__(self, type, x, y, parent, multipleLinks=False):
         super(Terminal, self).__init__()
+        self.uuid = str(uuid.uuid1())
         self.__originalX = x
         self.__originalY = y
         self.type = None
