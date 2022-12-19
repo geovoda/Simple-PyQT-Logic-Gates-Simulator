@@ -41,6 +41,6 @@ class OutputStream(LogicGate):
     def processOutput(self):
         text = ""
         for i in range(0, 10):
-            text += str(self.terminals[0].getConnectedTerminal().getOutput(i))
+            text += str(int(self.terminals[0].getConnectedTerminal().getOutput(i)))
 
         self.e1.setText(text)
