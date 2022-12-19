@@ -1,4 +1,4 @@
-import uuid
+import uuid as uuid_lib
 
 from PyQt5 import QtGui, QtCore
 from PyQt5.QtCore import QPoint, QEvent
@@ -7,9 +7,12 @@ from PyQt5.QtWidgets import QWidget
 
 
 class Terminal(QWidget):
-    def __init__(self, type, x, y, parent, multipleLinks=False):
+    def __init__(self, type, x, y, parent, multipleLinks=False, uuid=None):
         super(Terminal, self).__init__()
-        self.uuid = str(uuid.uuid1())
+        if uuid is None:
+            self.uuid = str(uuid_lib.uuid1())
+        else:
+            self.uuid = uuid
         self.__originalX = x
         self.__originalY = y
         self.type = None
