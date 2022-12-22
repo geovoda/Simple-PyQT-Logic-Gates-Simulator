@@ -128,7 +128,7 @@ class LogicGateContainer(QWidget):
     def onTerminalPress(self, terminal):
         if terminal.getConnectedTerminal() is not None:
             # print("Terminal deja conectat")
-            terminal.getConnectedTerminal().disconnectTerminal()
+            # terminal.getConnectedTerminal().disconnectTerminal()
             terminal.disconnectTerminal()
         elif self.__linkingTerminal is None:
             print("Conectez terminalul nou")
@@ -147,6 +147,11 @@ class LogicGateContainer(QWidget):
                 self.__mousePos = None
 
         self.repaint()
+
+    def removeGate(self, gate):
+        if gate in self.logicGates:
+            self.logicGates.remove(gate)
+
 
     def paintEvent(self, a0: QtGui.QPaintEvent) -> None:
         self.painter.begin(self)

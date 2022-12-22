@@ -85,8 +85,11 @@ class Terminal(QWidget):
     def connectTerminal(self, terminal):
         self.connectedTerminal = terminal
 
-    def disconnectTerminal(self):
-        self.connectedTerminal = None
+    def disconnectTerminal(self, callPair=True):
+        if self.connectedTerminal is not None:
+            if callPair == True:
+                self.connectedTerminal.disconnectTerminal(callPair=False)
+            self.connectedTerminal = None
 
     def getConnectedTerminal(self):
         return self.connectedTerminal

@@ -2,7 +2,7 @@ import uuid as uuid_lib
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPainter, QColor, QPen
-from PyQt5.QtWidgets import QWidget
+from PyQt5.QtWidgets import QWidget, QApplication
 from PyQt5 import QtGui
 from PyQt5 import QtCore
 import math
@@ -39,6 +39,19 @@ class LogicGate(QWidget):
         # super(LogicGate, self).mousePressEvent(event)
         if event.button() == QtCore.Qt.LeftButton:
             self.__mousePressPosition = event.pos()
+
+        elif event.button() == QtCore.Qt.RightButton:
+            self.disconnectTerminals()
+
+    def disconnectTerminals(self):
+        print("Deconectez terminalele")
+        for terminal in self.terminals:
+            terminal.disconnectTerminal()
+
+        self.parent().repaint()
+        self.parent().removeGate(self)
+
+        self.deleteLater()
 
     def mouseMoveEvent(self, event: QtGui.QMouseEvent) -> None:
         super().mouseMoveEvent(event)
