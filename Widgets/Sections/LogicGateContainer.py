@@ -36,22 +36,6 @@ class LogicGateContainer(QWidget):
     def initWindow(self):
         layout = QHBoxLayout()
 
-        undoButton = QPushButton(self)
-        undoButton.setText("Undo")  # text
-        undoButton.setShortcut('Ctrl+Z')  # shortcut key
-        undoButton.clicked.connect(self.undo)
-        undoButton.setToolTip("Anuleaza ultima actiune ")  # Tool tip
-        undoButton.move(10, 1)
-        layout.addWidget(undoButton)
-
-        redoButton = QPushButton(self)
-        redoButton.setText("Redo")  # text
-        redoButton.setShortcut('Ctrl+Z')  # shortcut key
-        redoButton.clicked.connect(self.redo)
-        redoButton.setToolTip("Reface ultima actiune")  # Tool tip
-        redoButton.move(110, 1)
-        layout.addWidget(redoButton)
-
         simulateButton = QPushButton(self)
         simulateButton.setText("Simulare")  # text
         simulateButton.clicked.connect(self.toggleSimulation)
@@ -72,8 +56,6 @@ class LogicGateContainer(QWidget):
         layout.setAlignment(Qt.AlignTop)
 
         self.setLayout(layout)
-
-
 
         self.show()
 

@@ -1,7 +1,8 @@
-from PyQt5.QtWidgets import QWidget, QHBoxLayout, QScrollArea
+from PyQt5.QtWidgets import QWidget, QHBoxLayout, QScrollArea, QVBoxLayout
+
+from Widgets.Sections.TopBar import TopBar
 from Widgets.Sections.LogicGateContainer import LogicGateContainer
 from Widgets.Sections.LogicGateMenu import LogicGateMenu
-
 
 class MainWindow(QWidget):
     def __init__(self):
@@ -9,6 +10,7 @@ class MainWindow(QWidget):
 
         self.logicGateMenu = LogicGateMenu(self)
         self.logicGateContainer = LogicGateContainer(parent=self)
+        self.topBar = TopBar()
 
         scrollableArea = QScrollArea()
         scrollableArea.setWidget(self.logicGateMenu)
@@ -21,9 +23,15 @@ class MainWindow(QWidget):
         hbox.addWidget(self.logicGateContainer, 1)
         hbox.setContentsMargins(0, 0, 0, 0)
 
-        self.setLayout(hbox)
+        vbox = QVBoxLayout()
+        vbox.addWidget(self.topBar)
+        vbox.addLayout(hbox)
+        vbox.setContentsMargins(0, 0, 0, 0)
 
+        self.setLayout(vbox)
         self.setWindowTitle("Simulator porti logice")
         self.setGeometry(0, 0, 800, 600)
 
         self.show()
+
+
