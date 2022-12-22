@@ -44,7 +44,6 @@ class LogicGate(QWidget):
             self.disconnectTerminals()
 
     def disconnectTerminals(self):
-        print("Deconectez terminalele")
         for terminal in self.terminals:
             terminal.disconnectTerminal()
 
