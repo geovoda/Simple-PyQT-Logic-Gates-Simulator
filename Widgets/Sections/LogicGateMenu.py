@@ -11,12 +11,12 @@ class LogicGateMenu(QWidget):
 
         vbox = QVBoxLayout()
 
-        button = QPushButton("INPUT")
-        button.clicked.connect(lambda: self.createLogicGate("INPUT_STREAM"))
+        button = GateButton("INPUT_ICON", self)
+        button.connect(lambda: self.createLogicGate("INPUT_STREAM"))
         vbox.addWidget(button)
 
-        button = QPushButton("OUTPUT")
-        button.clicked.connect(lambda: self.createLogicGate("OUTPUT_STREAM"))
+        button = GateButton("OUTPUT_ICON", self)
+        button.connect(lambda: self.createLogicGate("OUTPUT_STREAM"))
         vbox.addWidget(button)
 
         button = GateButton("AND", self)

@@ -13,7 +13,7 @@ class MainWindow(QWidget):
         scrollableArea = QScrollArea()
         scrollableArea.setWidget(self.logicGateMenu)
         scrollableArea.setWidgetResizable(True)
-        scrollableArea.setFixedWidth(80)
+        scrollableArea.setFixedWidth(84)
         scrollableArea.setStyleSheet("QScrollArea{border: none; border-right: 2px solid #c9d8ff;}")
 
         hbox = QHBoxLayout()

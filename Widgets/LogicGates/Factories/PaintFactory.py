@@ -32,6 +32,13 @@ class PaintFactory:
             from Widgets.LogicGates.GatesDesign.XNOR import GATE as XNOR
             self.gatesDesign[type] = XNOR
 
+        elif type == "INPUT_ICON":
+            from Widgets.LogicGates.GatesDesign.INPUT_ICON import GATE as INPUT_ICON
+            self.gatesDesign[type] = INPUT_ICON
+
+        elif type == "OUTPUT_ICON":
+            from Widgets.LogicGates.GatesDesign.OUTPUT_ICON import GATE as OUTPUT_ICON
+            self.gatesDesign[type] = OUTPUT_ICON
 
         else:
             return
