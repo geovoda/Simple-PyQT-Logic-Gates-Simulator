@@ -134,6 +134,11 @@ class LogicGateContainer(QWidget):
         if gate in self.logicGates:
             self.logicGates.remove(gate)
 
+    def removeAllGates(self):
+        for gate in self.logicGates:
+            gate.deleteLater()
+
+        self.repaint()
 
     def paintEvent(self, a0: QtGui.QPaintEvent) -> None:
         self.painter.begin(self)
@@ -151,3 +156,26 @@ class LogicGateContainer(QWidget):
             gate.paintTerminalLinks(self.painter)
 
         self.painter.end()
+
+    def generateProjectContent(self):
+        terminals = []
+        gates = []
+
+        for gate in self.logicGates:
+            for terminal in gate.terminals:
+                connectedTerminalUUID = None
+
+                if terminal.getConnectedTerminal() is not None:
+                    connectedTerminalUUID = terminal.getConnectedTerminal().uuid
+
+                terminals.append({
+                    "uuid": terminal.uuid,
+                    "pair-uuid": connectedTerminalUUID,
+                    "parent-uuid": terminal.parent().uuid
+                })
+
+            gates.append({
+                "uuid": gate.uuid,
+                "type": gate.type,
+            })
+

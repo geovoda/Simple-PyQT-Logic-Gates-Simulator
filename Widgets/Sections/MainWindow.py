@@ -21,6 +21,7 @@ class MainWindow(QMainWindow):
 
     def createNewProject(self):
         print("Creare proiect nou")
+        self.centralWidget().logicGateContainer.removeAllGates()
 
     def saveProject(self):
         print("Salvare proiect")
