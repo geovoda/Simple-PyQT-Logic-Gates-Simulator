@@ -31,5 +31,3 @@ class TopBar(QWidget):
 
         self.setLayout(horizontalLayout)
 
-        self.show()
-

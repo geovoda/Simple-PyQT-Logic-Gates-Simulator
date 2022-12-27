@@ -189,6 +189,12 @@ class LogicGateContainer(QWidget):
         }
 
     def loadProjectContent(self, content):
-        for gate in content["gates"]:
-            self.addGate(gate["type"], x=gate["x"], y=gate["y"])
+        gates = {}
+        terminals = {}
 
+        for gate in content["gates"]:
+            createdGate = self.logicGatesFactory.create(type, gate["x"], gate["y"], self.scale, self)
+            gates[gate["uuid"]] = createdGate
+
+        for terminal in content["terminals"]:
+            pass
