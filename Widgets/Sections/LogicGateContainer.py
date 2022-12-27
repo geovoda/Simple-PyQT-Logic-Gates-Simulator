@@ -92,8 +92,8 @@ class LogicGateContainer(QWidget):
     def redo(self):
         print("Redo")
 
-    def addGate(self, type):
-        gate = self.logicGatesFactory.create(type, 0, 30, self.scale, self)
+    def addGate(self, type, x=0, y=30):
+        gate = self.logicGatesFactory.create(type, x, y, self.scale, self)
         self.logicGates.append(gate)
 
     def mouseMoveEvent(self, e: QtGui.QMouseEvent) -> None:
@@ -138,6 +138,7 @@ class LogicGateContainer(QWidget):
         for gate in self.logicGates:
             gate.deleteLater()
 
+        self.logicGates = []
         self.repaint()
 
     def paintEvent(self, a0: QtGui.QPaintEvent) -> None:
@@ -162,20 +163,32 @@ class LogicGateContainer(QWidget):
         gates = []
 
         for gate in self.logicGates:
-            for terminal in gate.terminals:
+            for index, terminal in enumerate(gate.terminals):
                 connectedTerminalUUID = None
 
                 if terminal.getConnectedTerminal() is not None:
                     connectedTerminalUUID = terminal.getConnectedTerminal().uuid
 
                 terminals.append({
+                    "index": index,
                     "uuid": terminal.uuid,
                     "pair-uuid": connectedTerminalUUID,
-                    "parent-uuid": terminal.parent().uuid
+                    "parent-uuid": terminal.parent().uuid,
                 })
 
             gates.append({
                 "uuid": gate.uuid,
                 "type": gate.type,
+                "x": gate.x(),
+                "y": gate.y(),
             })
+
+        return {
+            "gates": gates,
+            "terminals": terminals
+        }
+
+    def loadProjectContent(self, content):
+        for gate in content["gates"]:
+            self.addGate(gate["type"], x=gate["x"], y=gate["y"])
 

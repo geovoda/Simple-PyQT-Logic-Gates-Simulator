@@ -11,7 +11,7 @@ class InputStream(LogicGate):
         WIDTH = 300
         HEIGHT = 60
         super(InputStream, self).__init__(x, y, WIDTH, HEIGHT, scale, parent, paintFactory)
-        self.type = "INPUT"
+        self.type = "INPUT_STREAM"
         self.terminals = [
             Terminal("OUTPUT", 280, 23, self),
         ]

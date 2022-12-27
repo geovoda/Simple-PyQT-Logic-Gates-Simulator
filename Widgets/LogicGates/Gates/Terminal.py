@@ -91,6 +91,9 @@ class Terminal(QWidget):
                 self.connectedTerminal.disconnectTerminal(callPair=False)
             self.connectedTerminal = None
 
+    def setUUID(self, uuid):
+        self.uuid = uuid
+
     def getConnectedTerminal(self):
         return self.connectedTerminal
 

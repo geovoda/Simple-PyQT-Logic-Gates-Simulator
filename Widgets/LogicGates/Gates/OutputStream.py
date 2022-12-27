@@ -11,7 +11,7 @@ class OutputStream(LogicGate):
         WIDTH = 300
         HEIGHT = 60
         super(OutputStream, self).__init__(x, y, WIDTH, HEIGHT, scale, parent, paintFactory)
-        self.type = "OUTPUT"
+        self.type = "OUTPUT_STREAM"
         self.terminals = [
             Terminal("INPUT", 1, 20, self),
             #Terminal("OUTPUT", 280, 20, self)

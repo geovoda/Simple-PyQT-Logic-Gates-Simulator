@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QWidget, QHBoxLayout, QScrollArea, QVBoxLayout, QMenuBar, QMainWindow, QAction
 from PyQt5.QtWidgets import QMenu
-
+import json
 from Widgets.Sections.CentralWidget import CentralWidget
 from Widgets.Sections.TopBar import TopBar
 from Widgets.Sections.LogicGateContainer import LogicGateContainer
@@ -24,10 +24,17 @@ class MainWindow(QMainWindow):
         self.centralWidget().logicGateContainer.removeAllGates()
 
     def saveProject(self):
-        print("Salvare proiect")
+        projectContent = self.centralWidget().logicGateContainer.generateProjectContent()
+
+        with open("saves/save-test.json", "w") as outfile:
+            json.dump(projectContent, outfile)
 
     def loadProject(self):
-        print("Încărcare proiect")
+        with open('saves/save-test.json', 'r') as openfile:
+            # Reading from json file
+            json_object = json.load(openfile)
+
+        self.centralWidget().logicGateContainer.loadProjectContent(json_object)
 
     def showHelp(self):
         print("Afisare ajutor")
