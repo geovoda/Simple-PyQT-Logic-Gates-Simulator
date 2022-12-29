@@ -77,10 +77,10 @@ class LogicGateContainer(QWidget):
                     print("Nu toate bornele sunt conectate")
                     return
 
-            if gate.type == "OUTPUT":
+            if gate.type == "OUTPUT_STREAM":
                 outputList.append(gate)
 
-            if gate.type == "INPUT":
+            if gate.type == "INPUT_STREAM":
                 gate.prepareGate()
 
         for gate in outputList:
