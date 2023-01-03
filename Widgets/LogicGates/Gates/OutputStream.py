@@ -24,6 +24,7 @@ class OutputStream(LogicGate):
         self.e1.setFixedWidth(int(240 * self.scale))
         self.e1.setFixedHeight(int(56 * self.scale))
         self.e1.setFont(QFont("Arial", int(24 * self.scale)))
+        self.e1.setDisabled(True)
         self.e1.setParent(self)
 
         self.show()
@@ -33,7 +34,6 @@ class OutputStream(LogicGate):
         self.e1.setFixedWidth(int(240 * self.scale))
         self.e1.setFixedHeight(int(56 * self.scale))
         self.e1.setFont(QFont("Arial", int(24 * self.scale)))
-        self.e1.setDisabled(True)
 
     def paintGate(self):
         self.painter.drawLine(0, 30, 60, 30)
