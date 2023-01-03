@@ -110,6 +110,9 @@ class LogicGate(QWidget):
     def makeOperation(self, item1, item2):
         pass
 
+    def getTerminalIndex(self, terminal):
+        return self.terminals.index(terminal)
+
     def getOutput(self, index):
         inputResults = []
         for terminal in self.terminals:

@@ -7,12 +7,8 @@ from PyQt5.QtWidgets import QWidget
 
 
 class Terminal(QWidget):
-    def __init__(self, type, x, y, parent, multipleLinks=False, uuid=None):
+    def __init__(self, type, x, y, parent, multipleLinks=False):
         super(Terminal, self).__init__()
-        if uuid is None:
-            self.uuid = str(uuid_lib.uuid1())
-        else:
-            self.uuid = uuid
         self.__originalX = x
         self.__originalY = y
         self.type = None
@@ -99,3 +95,6 @@ class Terminal(QWidget):
 
     def getOutput(self, index):
         return self.parent().getOutput(index)
+
+    def getIndex(self):
+        return self.parent().getTerminalIndex(self)

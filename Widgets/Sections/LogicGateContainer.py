@@ -167,13 +167,13 @@ class LogicGateContainer(QWidget):
                 connectedTerminalUUID = None
 
                 if terminal.getConnectedTerminal() is not None:
-                    connectedTerminalUUID = terminal.getConnectedTerminal().uuid
+                    connectedTerminal = terminal.getConnectedTerminal()
 
                 terminals.append({
-                    "index": index,
-                    "uuid": terminal.uuid,
-                    "pair-uuid": connectedTerminalUUID,
                     "parent-uuid": terminal.parent().uuid,
+                    "parent-index": index,
+                    "pair-parent-uuid": connectedTerminal.parent().uuid,
+                    "pair-parent-index": connectedTerminal.getIndex(),
                 })
 
             gates.append({
@@ -190,11 +190,20 @@ class LogicGateContainer(QWidget):
 
     def loadProjectContent(self, content):
         gates = {}
-        terminals = {}
 
         for gate in content["gates"]:
-            createdGate = self.logicGatesFactory.create(type, gate["x"], gate["y"], self.scale, self)
+            createdGate = self.logicGatesFactory.create(gate["type"], gate["x"], gate["y"], self.scale, self)
             gates[gate["uuid"]] = createdGate
 
         for terminal in content["terminals"]:
-            pass
+            if gates[terminal["parent-uuid"]].terminals[terminal["parent-index"]].getConnectedTerminal() is None:
+                gates[terminal["parent-uuid"]].terminals[terminal["parent-index"]].connectTerminal(gates[terminal["pair-parent-uuid"]].terminals[terminal["pair-parent-index"]])
+
+            if gates[terminal["pair-parent-uuid"]].terminals[terminal["pair-parent-index"]].getConnectedTerminal() is None:
+                gates[terminal["pair-parent-uuid"]].terminals[terminal["pair-parent-index"]].connectTerminal(gates[terminal["parent-uuid"]].terminals[terminal["parent-index"]])
+
+        for gateKey in gates:
+            self.logicGates.append(gates[gateKey])
+
+        self.repaint()
+
