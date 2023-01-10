@@ -3,7 +3,6 @@ from PyQt5.QtGui import QPainter, QPen
 from PyQt5.QtWidgets import QWidget, QPushButton, QSlider, QHBoxLayout, QLabel
 from PyQt5 import QtGui
 from PyQt5 import QtCore
-
 from Widgets.LogicGates.Factories.LogicGateFactory import LogicGateFactory
 # from Widgets.LogicGates.Gates.AndLogicGate import AndLogicGate
 # from Widgets.LogicGates.Gates.InputStream import InputStream
@@ -32,6 +31,18 @@ class LogicGateContainer(QWidget):
         self.initWindow()
 
         self.logicGatesFactory = LogicGateFactory()
+
+        self.save1 = None
+
+        self.save2 = None
+
+        self.save3 = None
+
+        self.save4 = None
+
+        self.save5 = None
+
+        self.pos = 0
 
     def initWindow(self):
         layout = QHBoxLayout()
@@ -87,14 +98,39 @@ class LogicGateContainer(QWidget):
             gate.processOutput()
 
     def undo(self):
-        print("Undo")
+        if self.pos == 5:
+            self.loadProjectContent(self.save4)
+            self.pos = 4
+        elif self.pos == 4:
+            self.loadProjectContent(self.save3)
+            self.pos = 3
+        elif self.pos == 3:
+            self.loadProjectContent(self.save2)
+            self.pos = 2
+        elif self.pos == 2:
+            self.loadProjectContent(self.save1)
+            self.pos = 1
+        print(self.pos)
 
     def redo(self):
-        print("Redo")
+        if self.pos == 4 and self.save5 is not None:
+            self.loadProjectContent(self.save5)
+            self.pos = 5
+        elif self.pos == 3 and self.save4 is not None:
+            self.loadProjectContent(self.save4)
+            self.pos = 4
+        elif self.pos == 2 and self.save3 is not None:
+            self.loadProjectContent(self.save3)
+            self.pos = 3
+        elif self.pos == 1 and self.save2 is not None:
+            self.loadProjectContent(self.save2)
+            self.pos = 2
+        print(self.pos)
 
     def addGate(self, type, x=0, y=30):
         gate = self.logicGatesFactory.create(type, x, y, self.scale, self)
         self.logicGates.append(gate)
+        self.SaveUndo()
 
     def mouseMoveEvent(self, e: QtGui.QMouseEvent) -> None:
         if self.__linkingTerminal is not None:
@@ -106,6 +142,9 @@ class LogicGateContainer(QWidget):
             self.__linkingTerminal = None
             self.__mousePos = None
             self.repaint()
+
+    def mouseReleaseEvent(self, a0: QtGui.QMouseEvent) -> None:
+        self.SaveUndo()
 
     def onTerminalPress(self, terminal):
         if terminal.getConnectedTerminal() is not None:
@@ -187,6 +226,56 @@ class LogicGateContainer(QWidget):
             "gates": gates,
             "terminals": terminals
         }
+
+    def generateProjectContentUndo(self):
+        terminals = []
+        gates = []
+
+        for gate in self.logicGates:
+            for index, terminal in enumerate(gate.terminals):
+                connectedTerminalUUID = None
+
+                if terminal.getConnectedTerminal() is not None:
+                    connectedTerminal = terminal.getConnectedTerminal()
+
+            gates.append({
+                "uuid": gate.uuid,
+                "type": gate.type,
+                "x": gate.x(),
+                "y": gate.y(),
+            })
+
+        return {
+            "gates": gates,
+            "terminals": terminals
+        }
+    def SaveUndo(self):
+        if self.save1 is None:
+             self.save1= self.generateProjectContentUndo()
+             self.pos = 1
+             self.save2 = None
+        elif self.save2 is None:
+             self.save2 = self.generateProjectContentUndo()
+             self.pos = 2
+             self.save3 = None
+        elif self.save3 is None:
+             self.save4 = None
+             self.save3 = self.generateProjectContentUndo()
+             self.pos = 3
+        elif self.save4 is None:
+             self.save5 = None
+             self.save4 = self.generateProjectContentUndo()
+             self.pos = 4
+        elif self.save5 is None:
+             self.save5 = self.generateProjectContentUndo()
+             self.pos = 5
+        elif self.pos==5:
+             self.save1 = self.save2
+             self.save2 = self.save3
+             self.save3 = self.save4
+             self.save4 = self.save5
+             self.save5 = self.generateProjectContentUndo()
+        print(self.pos)
 
     def loadProjectContent(self, content):
         for gate in self.logicGates:

@@ -11,7 +11,7 @@ class CentralWidget(QWidget):
 
         self.logicGateMenu = LogicGateMenu(self)
         self.logicGateContainer = LogicGateContainer(parent=self)
-        self.topBar = TopBar()
+        self.topBar = TopBar(self)
 
         scrollableArea = QScrollArea()
         scrollableArea.setWidget(self.logicGateMenu)
