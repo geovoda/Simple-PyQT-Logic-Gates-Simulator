@@ -5,7 +5,7 @@ from Widgets.Sections.CentralWidget import CentralWidget
 from Widgets.Sections.TopBar import TopBar
 from Widgets.Sections.LogicGateContainer import LogicGateContainer
 from Widgets.Sections.LogicGateMenu import LogicGateMenu
-
+from pathlib import Path
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -25,8 +25,9 @@ class MainWindow(QMainWindow):
 
     def saveProject(self):
         projectContent = self.centralWidget().logicGateContainer.generateProjectContent()
-
-        with open("saves/save-test.json", "w") as outfile:
+        filename = Path('saves/save-test.json')
+        filename.touch(exist_ok=True)
+        with open("saves/save-test.json", "w+") as outfile:
             json.dump(projectContent, outfile)
 
     def loadProject(self):

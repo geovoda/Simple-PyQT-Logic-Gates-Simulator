@@ -189,6 +189,10 @@ class LogicGateContainer(QWidget):
         }
 
     def loadProjectContent(self, content):
+        for gate in self.logicGates:
+            gate.deleteLater()
+
+        self.logicGates = []
         gates = {}
 
         for gate in content["gates"]:
