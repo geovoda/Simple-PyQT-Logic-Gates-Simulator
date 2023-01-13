@@ -250,23 +250,24 @@ class LogicGateContainer(QWidget):
             "terminals": terminals
         }
     def SaveUndo(self):
-        if self.save1 is None:
+        if self.pos==0:
              self.save1= self.generateProjectContentUndo()
              self.pos = 1
              self.save2 = None
-        elif self.save2 is None:
+        elif self.pos==1:
              self.save2 = self.generateProjectContentUndo()
              self.pos = 2
              self.save3 = None
-        elif self.save3 is None:
+        elif self.pos==2:
              self.save4 = None
              self.save3 = self.generateProjectContentUndo()
              self.pos = 3
-        elif self.save4 is None:
+        elif self.pos==3:
              self.save5 = None
              self.save4 = self.generateProjectContentUndo()
              self.pos = 4
-        elif self.save5 is None:
+        elif self.pos == 4:
+             self.save5 = None
              self.save5 = self.generateProjectContentUndo()
              self.pos = 5
         elif self.pos==5:
