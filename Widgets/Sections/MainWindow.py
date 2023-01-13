@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QWidget, QHBoxLayout, QScrollArea, QVBoxLayout, QMenuBar, QMainWindow, QAction
 from PyQt5.QtWidgets import QMenu
-import json
+import json, os
 from Widgets.Sections.CentralWidget import CentralWidget
 from Widgets.Sections.TopBar import TopBar
 from Widgets.Sections.LogicGateContainer import LogicGateContainer
@@ -25,13 +25,21 @@ class MainWindow(QMainWindow):
 
     def saveProject(self):
         projectContent = self.centralWidget().logicGateContainer.generateProjectContent()
-        filename = Path('saves/save-test.json')
-        filename.touch(exist_ok=True)
-        with open("saves/save-test.json", "w+") as outfile:
+        file_path = 'saves/save-test.json'
+
+        if not os.path.exists(os.path.dirname(file_path)):
+            os.makedirs(os.path.dirname(file_path))
+
+        with open(file_path, "w+") as outfile:
             json.dump(projectContent, outfile)
 
     def loadProject(self):
-        with open('saves/save-test.json', 'r') as openfile:
+        file_path = 'saves/save-test.json'
+
+        if not os.path.exists(os.path.dirname(file_path)):
+            os.makedirs(os.path.dirname(file_path))
+
+        with open(file_path, 'r') as openfile:
             # Reading from json file
             json_object = json.load(openfile)
 
